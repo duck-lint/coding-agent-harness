@@ -1,27 +1,56 @@
 # Agent Harness
 
-Portable repo-local harness for pair coding with explicit blast-radius analysis, bounded sub-agent roles, and working memory that lives in the repo instead of disappearing into chat history.
+Portable repository for a repo-local AI coding harness.
 
-This repository is a distribution repo. You do not run it as an app or install it as a package. You copy the parts you want into the repo where you want to work.
+This is a distribution repo, not an app, package, or runtime service. You copy the harness into the repo you are working on, and you copy the `.agent.md` files into whatever client-specific agent folder your tool uses.
 
-## What Goes Where
+The point of the harness is not “more agents for their own sake.” The point is to keep AI-assisted coding inside explicit contracts: ownership boundaries, approval boundaries, repo-local memory, verification discipline, and a single user-facing entrypoint.
 
-There are two install surfaces in this repo:
+## Core model
 
-1. `harness/` gets copied into the target repo.
-2. The `.agent.md` files get copied into the agent-capable dotfolder used by your client, such as `.copilot/`, `.codex/`, or a similar tool-specific location.
+The user should talk to one orchestrator:
+
+```text
+user → harnessed.agent.md → harness contracts + repo-local state → bounded role agents when needed
+```
+
+That is the important shape.
+
+`harnessed.agent.md` is the user-facing orchestrator. The planner, implementer, reviewer, adversary, and archivist are internal roles that `harnessed` may use when the work calls for them. They are not meant to become separate day-to-day entrypoints.
+
+There is also an optional separate product-manager companion agent. That agent is not part of the `harnessed` role chain. The user consults it directly when they want product, scope, architecture, or harness-discipline continuity pressure-tested, then carries the resulting correction or decision back into `harnessed`.
+
+## What this repository is for
+
+The harness exists to prevent common failure modes in iterative AI-assisted coding:
+
+* implementation momentum silently redefining the product
+* local shortcuts becoming permanent architecture
+* planning, implementation, and review collapsing into one blurry step
+* approval boundaries disappearing when work touches risky surfaces
+* chat history being treated as authoritative memory
+* structural progress being mistaken for live, user-facing behavior
+
+The harness adds structure around those failure modes without turning every small edit into bureaucracy.
+
+## What gets copied where
+
+There are two install surfaces:
+
+1. `harness/` is copied into the target repository.
+2. The `.agent.md` files are copied into the client-specific folder where your inference tool loads agent definitions, such as `.copilot/`, `.codex/`, or another tool-specific location.
 
 That split is intentional:
 
-- `harness/` is repo-local working memory and process scaffolding.
-- The `.agent.md` files are client-specific agent definitions.
+* `harness/` is the repo-local working memory and process scaffold.
+* the `.agent.md` files are the agent definitions the client loads.
 
 Typical downstream shape:
 
 ```text
 your-repo/
   harness/
-  .copilot/        # or .codex/, or another client-specific dotfolder
+  .codex/          # or .copilot/, or another client-specific folder
     harnessed.agent.md
     harness-planner.agent.md
     harness-implementer.agent.md
@@ -30,111 +59,85 @@ your-repo/
     harness-archivist.agent.md
 ```
 
-The exact dotfolder and file placement depend on the client you use. The important part is that the `harness/` folder lives with the repo, while the agent definition files live wherever your inference client expects them.
+Add `harness-product-manager.agent.md` if you want a separate continuity check for product intent, scope, architecture, and harness usage.
 
-## What This Harness Is For
+## Main workflow
 
-- keep read-only scouting separate from implementation
-- make blast radius and approval boundaries explicit before risky edits
-- separate planning, implementation, review, adversarial checking, and archival duties
-- require named verification and user-facing acceptance probes for non-trivial work
-- keep project memory in files inside the repo instead of relying on chat history
-- stay lightweight for small changes while still supporting multi-step work
+Normal use should look like this:
 
-## Repo Contents
+1. The user invokes `harnessed.agent.md`.
+2. `harnessed` starts with an ask-first scout pass unless implementation was explicitly authorized.
+3. `harnessed` reads the relevant repo-local harness contracts and state.
+4. `harnessed` identifies blast radius, approval boundaries, and the narrowest safe seam.
+5. `harnessed` delegates bounded work to the relevant role agent when needed.
+6. `harnessed` keeps the user in one conversation instead of making them manually coordinate sub-agents.
+
+Optional companion workflow:
+
+1. The user consults `harness-product-manager.agent.md`.
+2. The product manager pressure-tests product goal, scope, architecture, and drift risk.
+3. The user carries the useful correction or decision back into `harnessed`.
+
+## Repo contents
 
 ### `harness/`
 
-Portable repo-local working memory and process docs:
+This is the portable repo-local working memory that gets copied into a target repo.
 
-- `1.README.md`: orientation for the harness inside a target repo
-- `harness-runtime.md`: runtime contract and standing rules
-- `2.sub-agent-assignment-template.md`: handoff template for bounded agent work
-- `3.sub-agent-roles.md`: role contracts for planner, implementer, reviewer, adversary, and archivist
-- `4.archive-policy.md`: when work is complete enough to archive
-- `5.known-failures.md`: recurring failure patterns worth detecting early
-- `6.open-decisions.md`: current decision authority for still-live choices
-- `canon/`: compact claim-discipline references for normal work and higher-risk bridge cases
-- `implementation-projects/`: templates plus `active/` and `archive/` state folders for numbered implementation bundles
+* `1.README.md`: orientation for harnessed work in this repo
+* `harness-runtime.md`: runtime contract and approval boundaries
+* `2.sub-agent-assignment-template.md`: handoff format for bounded sub-agent work
+* `3.sub-agent-roles.md`: role responsibilities and handoff rules
+* `4.archive-policy.md`: when and how completed work moves to archive
+* `5.known-failures.md`: recurring harness or repo failure patterns
+* `6.open-decisions.md`: decision authority for still-live decisions
+* `canon/type-system-operational.md`: compact claim discipline for normal coding work
+* `canon/bridge-schema.md`: fuller bridge schema for high-risk or conceptually slippery moves
+* `implementation-projects/active/`: the one live numbered implementation bundle, when needed
+* `implementation-projects/archive/`: completed numbered implementation bundles
+* `implementation-projects/templates/`: plan and tracker templates
 
 ### `agents/`
 
-Reusable agent definitions:
+These are the agent definitions you install in the client-specific folder.
 
-| File | Purpose |
-| --- | --- |
-| `harnessed.agent.md` | Main orchestrator for the user conversation. Handles routing, blast radius, approval boundaries, and final integration. |
-| `harness-planner.agent.md` | Turns a requested change into an executable plan with seams, checks, and approval gates. |
-| `harness-implementer.agent.md` | Executes one approved seam at a time and validates immediately. |
-| `harness-reviewer.agent.md` | Reviews diffs against the plan, verification contract, and acceptance probe. |
-| `harness-adversary.agent.md` | Tries to falsify assumptions, weak checks, and incomplete reasoning. |
-| `harness-archivist.agent.md` | Updates repo-local memory, decisions, failures, and archive state. |
-| `bumblebee-product-manager.agent.md` | Optional architecture continuity guardrail for Bumblebee-specific work. |
-| `agent-reference-type-system-canon.md` | Shared reference text for the claim-discipline and type-system canon. |
+| File                                   | Role in the workflow                                                                                                                 |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `harnessed.agent.md`                   | User-facing orchestrator. Owns the conversation, blast-radius summary, approval boundaries, delegation, and final integration.       |
+| `harness-planner.agent.md`             | Internal planning role used by `harnessed` to define seams, non-goals, affected surfaces, approval gates, and verification duties.   |
+| `harness-implementer.agent.md`         | Internal implementation role used by `harnessed` to execute one approved seam at a time and validate immediately.                    |
+| `harness-reviewer.agent.md`            | Internal review role used by `harnessed` to judge implementation against the plan and verification contract.                         |
+| `harness-adversary.agent.md`           | Internal adversarial role used by `harnessed` to stress-test assumptions and propose cheap falsifying checks.                        |
+| `harness-archivist.agent.md`           | Internal archival role used by `harnessed` to keep repo-local memory and implementation state coherent.                              |
+| `harness-product-manager.agent.md`     | Optional separate user-facing companion agent for product and architecture continuity. The user mediates between it and `harnessed`. |
+| `agent-reference-type-system-canon.md` | Shared reference text for claim discipline and type-system language.                                                                 |
 
-## Core Working Style
+## What the harness is supposed to do
 
-This harness assumes a direct, novice-safe workflow:
+The docs in this repo are designed to keep the following things explicit:
 
-1. Start with a read-only scout pass unless the user explicitly asks to implement now.
-2. Identify the controlling surface and likely blast radius.
-3. Define the seam, verification path, and user-facing acceptance probe.
-4. Stop for approval before crossing schema, API, auth, storage, deployment, billing, destructive, or broad architecture boundaries.
-5. Implement one seam at a time.
-6. Review and, when warranted, adversarially test the result.
-7. Archive completed implementation memory so later sessions can resume from the repo instead of chat history.
+* observed evidence
+* inference
+* unknowns
+* proposed action
+* validated result
+* approval boundaries
+* repo-local memory
+* archive state
 
-The harness tries hard not to confuse:
+For normal work, the harness should:
 
-- observed evidence
-- inference
-- unknowns
-- proposed action
-- validated result
+* default to a read-only scout pass unless the user explicitly asks to implement now
+* make blast radius explicit before behavior-changing edits
+* keep the planning horizon bounded to the current user-authorized goal
+* stop for approval before crossing risky boundaries
+* require explicit verification and named user-facing acceptance probes for non-trivial work
+* keep decisions, failures, handoffs, and implementation state in the repo instead of only in chat history
+* keep planning, implementation, review, adversarial checking, and archival duties separate without making the user manually coordinate them
 
-Most of the docs use plain engineering language. The canon files are there when a distinction needs to be sharper, not to force every task into theory language.
+## Implementation bundles
 
-## Installation
-
-### 1. Copy the harness into the target repo
-
-Copy the entire `harness/` directory into the root of the repo where you want the workflow to live.
-
-### 2. Copy the agent files into your client dotfolder
-
-Copy whichever `.agent.md` files you want into the dotfolder used by your inference client.
-
-Examples:
-
-- `.copilot/`
-- `.codex/`
-- another client-specific agent or prompt folder
-
-If you want the full workflow, start with:
-
-- `harnessed.agent.md`
-- `harness-planner.agent.md`
-- `harness-implementer.agent.md`
-- `harness-reviewer.agent.md`
-- `harness-adversary.agent.md`
-- `harness-archivist.agent.md`
-
-Add `bumblebee-product-manager.agent.md` only if you want the Bumblebee-specific architecture continuity layer.
-
-### 3. Open the target repo and work through the harness
-
-Use the main harnessed agent for normal work, and route to the specialized roles when the task benefits from planning, review, adversarial checking, or archive maintenance.
-
-## Example Prompts
-
-- "Scout this before editing. Tell me the controlling surface, blast radius, unknowns, and the cheapest check that could prove me wrong."
-- "Use the harness and implement this now. Stop if the change crosses schema, API, auth, storage, deployment, or other approval boundaries."
-- "Review this change against the harness verification contract and lead with findings."
-- "Archive this completed implementation and reconcile active, archive, and open-decision state."
-
-## When To Create An Implementation Bundle
-
-For trivial local edits, the harness can stay lightweight.
+For trivial local edits, the harness should stay light and avoid unnecessary project paperwork.
 
 For multi-step, repo-scoped, risky, or architecture-shaping work, create a numbered bundle under:
 
@@ -144,33 +147,37 @@ harness/implementation-projects/active/
   implementation-XX-tracker.md
 ```
 
-When the work is complete, move the bundle into `harness/implementation-projects/archive/` and clean up any still-live references in `harness/6.open-decisions.md`.
+When the work is complete, the bundle moves to `harness/implementation-projects/archive/`, and any still-live references in `harness/6.open-decisions.md` should be cleaned up in the same closeout.
 
-## Updating Downstream Repos
+## Updating downstream repos
 
-Because this repo is copied into other repos, updates are manual by design:
+Because this repo is meant to be copied into other repos, updates are manual:
 
-1. Pull the latest changes from this repo.
-2. Review what changed in `harness/` and `agents/`.
-3. Copy only the pieces you want into the downstream repo and client dotfolder.
-4. Avoid blind overwrites if you have customized the harness or agent files locally.
+1. pull the latest changes from this repo
+2. review what changed in `harness/` and `agents/`
+3. copy the updated harness docs into the target repo
+4. copy the updated agent files into the client folder
+5. avoid blind overwrites if you have customized the harness locally
 
-The harness docs and the agent files can be updated independently.
+The harness docs and the agent definitions can evolve separately, so downstream repos may choose to take one without immediately taking the other.
 
-## Non-Goals
+## Non-goals
 
-- This is not a package manager dependency.
-- This is not a hidden-memory agent system.
-- This is not a substitute for product decisions or human approval at risky boundaries.
-- This is not meant to force heavyweight process onto every one-file change.
+* this is not a package dependency
+* this is not a hidden-memory agent system
+* this is not a substitute for product decisions or approval at risky boundaries
+* this is not meant to force heavyweight paperwork onto every small edit
+* this is not a workflow where the user manually coordinates the internal role agents as peers
+* this is not a signal that sub-agents are the point; the point is the contract and the continuity layer
 
 ## Summary
 
-Use this repo when you want a reusable pair-coding harness that:
+This repo packages a portable harness where:
 
-- travels across projects
-- keeps implementation memory in the repo
-- separates roles cleanly
-- stays explicit about blast radius, approval boundaries, and verification
-
-Copy `harness/` into the repo you are working in. Copy the `.agent.md` files into your client's dotfolder. Then use the harness to scout, plan, implement, review, and archive work without relying on chat history alone.
+* `harness/` lives in the target repo
+* the `.agent.md` files live in the client folder
+* the user talks to `harnessed`
+* `harnessed` operates through harness contracts and repo-local state
+* internal role agents are used when needed, but they are not the primary interface
+* the optional product manager is a separate companion for continuity and drift checking
+* verification, approval boundaries, and repo-local memory are part of the workflow rather than afterthoughts
