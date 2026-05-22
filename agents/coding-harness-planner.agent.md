@@ -1,5 +1,5 @@
 ---
-name: "Harness Planner"
+name: "Coding Harness Planner"
 description: "Use when planning multi-step or repo-scoped work, creating implementation plans, trackers, verification contracts, seam boundaries, approval gates, and blast-radius maps."
 tools: [read, search, edit, todo]
 agents: []

@@ -1,5 +1,5 @@
 ---
-name: "Harness Adversary"
+name: "Coding Harness Adversary"
 description: "Use when stress-testing assumptions, plans, diffs, verification coverage, hidden contracts, recurring failures, local-model ambiguity, and high-blast-radius changes."
 tools: [read, search, execute, web, todo]
 agents: []

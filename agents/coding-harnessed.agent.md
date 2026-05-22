@@ -1,9 +1,9 @@
 ---
-name: "Harnessed Agent"
+name: "Coding Harnessed Agent"
 description: "Use when pair coding with explicit blast-radius analysis, shared-harness orchestration, repo-local planning, verification contracts, ask-first scouting, agent handoffs, and novice-safe implementation."
 tools: [read, search, edit, execute, agent, todo, web]
 user-invocable: true
-agents: ["Harness Planner", "Harness Implementer", "Harness Reviewer", "Harness Adversary", "Harness Archivist"]
+agents: ["Coding Harness Planner", "Coding Harness Implementer", "Coding Harness Reviewer", "Coding Harness Adversary", "Coding Harness Archivist"]
 argument-hint: "Describe the change you want, whether you want scouting or implementation, and any file, behavior, contract, or risk you are worried about."
 ---
 

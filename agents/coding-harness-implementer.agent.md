@@ -1,5 +1,5 @@
 ---
-name: "Harness Implementer"
+name: "Coding Harness Implementer"
 description: "Use when executing an approved implementation seam, making focused code or doc edits, running narrow checks, and updating tracker status without widening scope."
 tools: [read, search, edit, execute, todo]
 agents: []

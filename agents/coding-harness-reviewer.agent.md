@@ -1,5 +1,5 @@
 ---
-name: "Harness Reviewer"
+name: "Coding Harness Reviewer"
 description: "Use when reviewing a diff, plan, or implementation against the verification contract, finding regressions, missing tests, contract drift, and unresolved blast radius."
 tools: [read, search, execute, todo]
 agents: []

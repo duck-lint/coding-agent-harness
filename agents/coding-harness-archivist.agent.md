@@ -1,5 +1,5 @@
 ---
-name: "Harness Archivist"
+name: "Coding Harness Archivist"
 description: "Use when updating repo-local implementation memory, decision logs, verification evidence, known failures, archive summaries, and implementation-project state folders."
 tools: [read, search, edit, todo]
 agents: []
