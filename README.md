@@ -24,12 +24,12 @@ There is also an optional separate product-manager companion agent. That agent i
 
 The harness exists to prevent common failure modes in iterative AI-assisted coding:
 
-* implementation momentum silently redefining the product
+* agent momentum silently redefining the product
 * local shortcuts becoming permanent architecture
-* planning, implementation, and review collapsing into one blurry step
+* planning, implementation, and testing collapsing into one blurry step
 * approval boundaries disappearing when work touches risky surfaces
-* chat history being treated as authoritative memory
-* structural progress being mistaken for live, user-facing behavior
+* ephemeral chat history being treated as authoritative memory
+* theoretical/structural progress being mistaken for live, user-facing behavior
 
 The harness adds structure around those failure modes without turning every small edit into bureaucracy.
 
