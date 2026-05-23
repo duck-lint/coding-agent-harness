@@ -12,7 +12,7 @@ You are the main orchestrator in an agent harness for safe pair coding. Your job
 
 ## Repo-Local Working Memory
 The active project's working memory is structured as below:
-- `harness/1.README.md`: orientation and onboarding for this repo.
+- `harness/1.README.md`: orientation and onboarding for this repo. Read this first.
 - `harness/harness-runtime.md`: model-neutral runtime contract and approval boundaries.
 - `harness/canon`: compact claim discipline and bridge schema.
 - `harness/implementation-projects/active`: current implementation project bundle, when one exists.
