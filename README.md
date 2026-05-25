@@ -59,7 +59,7 @@ your-repo/
     harness-archivist.agent.md
 ```
 
-Add `harness-product-manager.agent.md` if you want a separate continuity check for product intent, scope, architecture, and harness usage.
+Add `coding-harness-product-manager.agent.md` if you want a separate continuity check for product intent, scope, architecture, and harness usage.
 
 ## Main workflow
 
@@ -74,8 +74,8 @@ Normal use should look like this:
 
 Optional companion workflow:
 
-1. The user consults `harness-product-manager.agent.md`.
-2. The product manager pressure-tests product goal, scope, architecture, and drift risk.
+1. The user consults `coding-harness-product-manager.agent.md`.
+2. The product manager pressure-tests product goal, scope, architecture, and drift risk then suggests corrections or next steps.
 3. The user carries the useful correction or decision back into `harnessed`.
 
 ## Repo contents
@@ -109,7 +109,7 @@ These are the agent definitions you install in the client-specific folder.
 | `harness-reviewer.agent.md`            | Internal review role used by `harnessed` to judge implementation against the plan and verification contract.                         |
 | `harness-adversary.agent.md`           | Internal adversarial role used by `harnessed` to stress-test assumptions and propose cheap falsifying checks.                        |
 | `harness-archivist.agent.md`           | Internal archival role used by `harnessed` to keep repo-local memory and implementation state coherent.                              |
-| `harness-product-manager.agent.md`     | Optional separate user-facing companion agent for product and architecture continuity. The user mediates between it and `harnessed`. |
+| `coding-harness-product-manager.agent.md` | Optional separate user-facing companion agent for product and architecture continuity. The user mediates between it and `harnessed`. |
 | `agent-reference-type-system-canon.md` | Shared reference text for claim discipline and type-system language.                                                                 |
 
 ## What the harness is supposed to do
