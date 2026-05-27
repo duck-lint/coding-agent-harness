@@ -59,12 +59,12 @@ C:/
       .copilot/        # or .codex/, or another client-specific folder
         agents/
           agent-reference-type-system-canon.md
-          harnessed.agent.md
-          harness-planner.agent.md
-          harness-implementer.agent.md
-          harness-reviewer.agent.md
-          harness-adversary.agent.md
-          harness-archivist.agent.md
+          coding-harnessed.agent.md
+          coding-harness-planner.agent.md
+          coding-harness-implementer.agent.md
+          coding-harness-reviewer.agent.md
+          coding-harness-adversary.agent.md
+          coding-harness-archivist.agent.md
 ```
 
 Add `coding-harness-product-manager.agent.md` if you want a separate continuity check for product intent, scope, architecture, and harness usage.
@@ -73,18 +73,18 @@ Add `coding-harness-product-manager.agent.md` if you want a separate continuity 
 
 Normal use should look like this:
 
-1. The user invokes `harnessed.agent.md`.
-2. `harnessed` starts with an ask-first scout pass unless implementation was explicitly authorized.
-3. `harnessed` reads the relevant repo-local harness contracts and state.
-4. `harnessed` identifies blast radius, approval boundaries, and the narrowest safe seam.
-5. `harnessed` delegates bounded work to the relevant role agent when needed.
-6. `harnessed` keeps the user in one conversation instead of making them manually coordinate sub-agents.
+1. The user invokes `coding-harnessed.agent.md`.
+2. `coding-harnessed` starts with an ask-first scout pass unless implementation was explicitly authorized.
+3. `coding-harnessed` reads the relevant repo-local harness contracts and state.
+4. `coding-harnessed` identifies blast radius, approval boundaries, and the narrowest safe seam.
+5. `coding-harnessed` delegates bounded work to the relevant role agent when needed.
+6. `coding-harnessed` keeps the user in one conversation instead of making them manually coordinate sub-agents.
 
 Optional companion workflow:
 
 1. The user consults `coding-harness-product-manager.agent.md`.
 2. The product manager pressure-tests product goal, scope, architecture, and drift risk then suggests corrections or next steps.
-3. The user carries the useful correction or decision back into `harnessed`.
+3. The user carries the useful correction or decision back into `coding-harnessed`.
 
 ## Repo contents
 
@@ -111,13 +111,13 @@ These are the agent definitions you install in the client-specific folder.
 
 | File                                   | Role in the workflow                                                                                                                 |
 | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `harnessed.agent.md`                   | User-facing orchestrator. Owns the conversation, blast-radius summary, approval boundaries, delegation, and final integration.       |
-| `harness-planner.agent.md`             | Internal planning role used by `harnessed` to define seams, non-goals, affected surfaces, approval gates, and verification duties.   |
-| `harness-implementer.agent.md`         | Internal implementation role used by `harnessed` to execute one approved seam at a time and validate immediately.                    |
-| `harness-reviewer.agent.md`            | Internal review role used by `harnessed` to judge implementation against the plan and verification contract.                         |
-| `harness-adversary.agent.md`           | Internal adversarial role used by `harnessed` to stress-test assumptions and propose cheap falsifying checks.                        |
-| `harness-archivist.agent.md`           | Internal archival role used by `harnessed` to keep repo-local memory and implementation state coherent.                              |
-| `coding-harness-product-manager.agent.md` | Optional separate user-facing companion agent for product and architecture continuity. The user mediates between it and `harnessed`. |
+| `coding-harnessed.agent.md`                   | User-facing orchestrator. Owns the conversation, blast-radius summary, approval boundaries, delegation, and final integration.       |
+| `coding-harness-planner.agent.md`             | Internal planning role used by `coding-harnessed` to define seams, non-goals, affected surfaces, approval gates, and verification duties.   |
+| `coding-harness-implementer.agent.md`         | Internal implementation role used by `coding-harnessed` to execute one approved seam at a time and validate immediately.                    |
+| `coding-harness-reviewer.agent.md`            | Internal review role used by `coding-harnessed` to judge implementation against the plan and verification contract.                         |
+| `coding-harness-adversary.agent.md`           | Internal adversarial role used by `coding-harnessed` to stress-test assumptions and propose cheap falsifying checks.                        |
+| `coding-harness-archivist.agent.md`           | Internal archival role used by `coding-harnessed` to keep repo-local memory and implementation state coherent.                              |
+| `coding-harness-product-manager.agent.md` | Optional separate user-facing companion agent for product and architecture continuity. The user mediates between it and `coding-harnessed`. |
 | `agent-reference-type-system-canon.md` | Shared reference text for claim discipline and type-system language.                                                                 |
 
 ## What the harness is supposed to do
@@ -184,8 +184,8 @@ This repo packages a portable harness where:
 
 * `harness/` lives in the target repo
 * the `.agent.md` files live in the client folder
-* the user talks to `harnessed`
-* `harnessed` operates through harness contracts and repo-local state
+* the user talks to `coding-harnessed`
+* `coding-harnessed` operates through harness contracts and repo-local state
 * internal role agents are used when needed, but they are not the primary interface
 * the optional product manager is a separate companion for continuity and drift checking
 * verification, approval boundaries, and repo-local memory are part of the workflow rather than afterthoughts
