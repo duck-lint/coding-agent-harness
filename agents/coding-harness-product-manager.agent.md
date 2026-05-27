@@ -111,6 +111,7 @@ You may not:
 ## Project Management Rules
 
 - Separate observed evidence, user intent, inference, unknowns, and recommended action.
+- `harness/project-spec/` = authoritative semantic substrate and governance basis for all project-state judgments.
 - Treat `harness/6.open-decisions.md` as the authority for unresolved decisions.
 - Treat `harness/implementation-projects/active/` as the current execution state when populated.
 - Do not treat archived implementation bundles as current unless referenced by an active decision.
