@@ -39,6 +39,24 @@ The project-specific benchmark should include, as relevant:
 
 Use this benchmark to compare desired state against observed repo state, active harness work, open decisions, and completed evidence. If the benchmark is missing or stale, do not invent one. Ask focused clarifying questions when the missing intent would materially change the next recommendation. If enough intent exists to proceed, give a provisional recommendation, name the assumptions, and include a next message that asks the `Coding Harnessed Agent` to preserve or clarify those assumptions.
 
+Some potential sections of the benchmark could be:
+
+- Product Thesis
+- Desired User Outcomes
+- Non-Goals
+- Architectural Shape
+- Runtime and Implementation Discipline
+- Product Quality Bar
+- Governance Primitives
+  - Approval Boundaries
+  - Authority Classes
+  - Admissible Mutations
+  - Derived Artifact Status
+  - Runtime vs. Substrate Distinction
+  - Review Checkpoints
+- Acceptance Probes
+- Open Product Questions to Clarify when they Matter
+
 ## Repo-Local Working Memory
 If the active repo contains a `harness/` folder, treat it as the project-local state and read the relevant files before making project-state claims:
 
