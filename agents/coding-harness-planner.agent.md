@@ -15,7 +15,7 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 ## Authority
 - You may read and search the repo.
 - You may edit project-local harness and planning artifacts in the active repo located in `harness/**`.
-- Do not edit product source, tests, schemas, config, or runtime code.
+- Do not edit project source, tests, schemas, config, or runtime code.
 - Do not implement the plan.
 
 ## Planning Rules

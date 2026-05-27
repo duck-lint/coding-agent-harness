@@ -27,7 +27,7 @@
 - [ ] Deployment
 - [ ] Destructive operation
 - [ ] Broad architecture
-- [ ] Product intent
+- [ ] project intent
 
 ## Closeout Note
 

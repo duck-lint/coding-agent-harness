@@ -18,13 +18,13 @@ That is the important shape.
 
 `harnessed.agent.md` is the user-facing orchestrator. The planner, implementer, reviewer, adversary, and archivist are internal roles that `harnessed` may use when the work calls for them. They are not meant to become separate day-to-day entrypoints.
 
-There is also an optional separate product-manager companion agent. That agent is not part of the `harnessed` role chain. The user consults it directly when they want product, scope, architecture, or harness-discipline continuity pressure-tested, then carries the resulting correction or decision back into `harnessed`.
+There is also an optional separate project-manager companion agent. That agent is not part of the `harnessed` role chain. The user consults it directly when they want project, scope, architecture, or harness-discipline continuity pressure-tested, then carries the resulting correction or decision back into `harnessed`.
 
 ## What this repository is for
 
 The harness exists to prevent common failure modes in iterative AI-assisted coding:
 
-* agent momentum silently redefining the product
+* agent momentum silently redefining the project
 * local shortcuts becoming permanent architecture
 * planning, implementation, and testing collapsing into one blurry step
 * approval boundaries disappearing when work touches risky surfaces
@@ -67,7 +67,7 @@ C:/
           coding-harness-archivist.agent.md
 ```
 
-Add `coding-harness-product-manager.agent.md` if you want a separate continuity check for product intent, scope, architecture, and harness usage.
+Add `coding-harness-project-manager.agent.md` if you want a separate continuity check for project intent, scope, architecture, and harness usage.
 
 ## Main workflow
 
@@ -82,8 +82,8 @@ Normal use should look like this:
 
 Optional companion workflow:
 
-1. The user consults `coding-harness-product-manager.agent.md`.
-2. The product manager pressure-tests product goal, scope, architecture, and drift risk then suggests corrections or next steps.
+1. The user consults `coding-harness-project-manager.agent.md`.
+2. The Project Manager pressure-tests project goal, scope, architecture, and drift risk then suggests corrections or next steps.
 3. The user carries the useful correction or decision back into `coding-harnessed`.
 
 ## Repo contents
@@ -117,7 +117,7 @@ These are the agent definitions you install in the client-specific folder.
 | `coding-harness-reviewer.agent.md`            | Internal review role used by `coding-harnessed` to judge implementation against the plan and verification contract.                         |
 | `coding-harness-adversary.agent.md`           | Internal adversarial role used by `coding-harnessed` to stress-test assumptions and propose cheap falsifying checks.                        |
 | `coding-harness-archivist.agent.md`           | Internal archival role used by `coding-harnessed` to keep repo-local memory and implementation state coherent.                              |
-| `coding-harness-product-manager.agent.md` | Optional separate user-facing companion agent for product and architecture continuity. The user mediates between it and `coding-harnessed`. |
+| `coding-harness-project-manager.agent.md` | Optional separate user-facing companion agent for project and architecture continuity. The user mediates between it and `coding-harnessed`. |
 | `agent-reference-type-system-canon.md` | Shared reference text for claim discipline and type-system language.                                                                 |
 
 ## What the harness is supposed to do
@@ -173,7 +173,7 @@ The harness docs and the agent definitions can evolve separately, so downstream 
 
 * this is not a package dependency
 * this is not a hidden-memory agent system
-* this is not a substitute for product decisions or approval at risky boundaries
+* this is not a substitute for project decisions or approval at risky boundaries
 * this is not meant to force heavyweight paperwork onto every small edit
 * this is not a workflow where the user manually coordinates the internal role agents as peers
 * this is not a signal that sub-agents are the point; the point is the contract and the continuity layer
@@ -187,5 +187,5 @@ This repo packages a portable harness where:
 * the user talks to `coding-harnessed`
 * `coding-harnessed` operates through harness contracts and repo-local state
 * internal role agents are used when needed, but they are not the primary interface
-* the optional product manager is a separate companion for continuity and drift checking
+* the optional Project Manager is a separate companion for continuity and drift checking
 * verification, approval boundaries, and repo-local memory are part of the workflow rather than afterthoughts

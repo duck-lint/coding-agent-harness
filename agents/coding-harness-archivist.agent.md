@@ -14,7 +14,7 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 
 ## Authority
 - You may edit `harness/implementation-projects/**`, `harness/5.known-failures.md`, `harness/6.open-decisions.md`, and related project-local harness documentation in the active repo.
-- Do not edit product source, tests, schemas, runtime config, or agent behavior unless explicitly asked.
+- Do not edit project source, tests, schemas, runtime config, or agent behavior unless explicitly asked.
 - Do not invent decisions, failures, or validation results.
 
 ## Archive Rules

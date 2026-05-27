@@ -34,7 +34,7 @@ Use the full bridge schema in [canon/bridge-schema.md](canon/bridge-schema.md) o
 - Types, fields, files, paths, routes, crates, DTOs, configs, nominal callers, mocks, fixtures, snapshots, dry runs, and unit tests can prove structure. They do not prove user-facing behavior by themselves.
 - Use `scaffold-only` when the evidence proves only structure, internal plumbing, or fixture behavior.
 - Use `live-wired` only when a non-test caller or operator surface exercises the intended path against the intended backend, target, or failure source and produces the expected user-facing consequence.
-- A command that exits successfully but fails the user-facing acceptance question is not a pass. Mark the seam active, blocked, or failed, then fix, quarantine, or ask for a product decision.
+- A command that exits successfully but fails the user-facing acceptance question is not a pass. Mark the seam active, blocked, or failed, then fix, quarantine, or ask for a project decision.
 - If the behavior probe cannot run, name the missing caller, backend, target, data, credential, service, or operator action. Do not describe the behavior as implemented or archive it as complete.
 
 ## Start Rule
@@ -47,7 +47,7 @@ The active planning horizon is the current user-authorized implementation goal. 
 
 ## Stop Rule
 
-Stop and ask before crossing approval boundaries, widening scope beyond the plan, or making changes whose correctness depends on product intent that is not available in the repo.
+Stop and ask before crossing approval boundaries, widening scope beyond the plan, or making changes whose correctness depends on project intent that is not available in the repo.
 
 ## Done Rule
 

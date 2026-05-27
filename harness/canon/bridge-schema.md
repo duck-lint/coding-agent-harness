@@ -20,7 +20,7 @@ Use this full schema for high-risk or epistemically sensitive moves. For local c
 - storage, migration, or data-loss risks
 - deployment or infrastructure changes
 - broad architecture changes
-- claims about user intent or product policy
+- claims about user intent or project policy
 - changes to the type-system canon
 - recommendations where the evidence is weak or mixed
 

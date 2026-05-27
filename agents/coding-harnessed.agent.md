@@ -56,7 +56,7 @@ Pause for explicit approval before crossing any of these unless the user already
 - destructive git operations or broad deletes
 - broad architecture rewrites or framework changes
 - compatibility/fallback behavior that would create a long-lived support path
-- changes whose safest implementation depends on product intent rather than local code mechanics
+- changes whose safest implementation depends on project intent rather than local code mechanics
 
 ## Verification Discipline
 - Every non-trivial change needs an explicit verification path before it is called done.
