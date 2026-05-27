@@ -50,6 +50,25 @@ Typical downstream shape:
 ```text
 your-repo/
   harness/
+    1.README.md
+    harness-runtime.md
+    2.sub-agent-assignment-template.md
+    3.sub-agent-roles.md
+    4.archive-policy.md
+    5.known-failures.md
+    6.open-decisions.md
+    canon/
+      type-system-operational.md
+      bridge-schema.md
+    implementation-projects/
+      active/
+      archive/
+      templates/
+        implementation-plan-template.md
+        implementation-tracker-template.md
+    project-spec/
+      governance-primitives.md
+      project-spec.md
 ```
 and 
 ```text
@@ -104,6 +123,8 @@ This is the portable repo-local working memory that gets copied into a target re
 * `implementation-projects/active/`: the one live numbered implementation bundle, when needed
 * `implementation-projects/archive/`: completed numbered implementation bundles
 * `implementation-projects/templates/`: plan and tracker templates
+* `project-spec/governance-primitives.md`: project-local governance rules, approval boundaries, and authority distinctions
+* `project-spec/project-spec.md`: project-local intent, semantics, architecture, and constraints
 
 ### `agents/`
 
@@ -183,6 +204,7 @@ The harness docs and the agent definitions can evolve separately, so downstream 
 This repo packages a portable harness where:
 
 * `harness/` lives in the target repo
+* `harness/project-spec/` = authoritative semantic substrate
 * the `.agent.md` files live in the client folder
 * the user talks to `coding-harnessed`
 * `coding-harnessed` operates through harness contracts and repo-local state
