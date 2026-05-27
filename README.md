@@ -38,25 +38,33 @@ The harness adds structure around those failure modes without turning every smal
 There are two install surfaces:
 
 1. `harness/` is copied into the target repository.
-2. The `.agent.md` files are copied into the client-specific folder where your inference tool loads agent definitions, such as `.copilot/`, `.codex/`, or another tool-specific location.
+2. The `.agent.md` files are copied into the client-specific folder where your inference tool loads agent prompts, such as `.copilot/`, `.codex/`, or another tool-specific location.
 
 That split is intentional:
 
 * `harness/` is the repo-local working memory and process scaffold.
-* the `.agent.md` files are the agent definitions the client loads.
+* the `.agent.md` files are the agent prompts the client loads.
 
 Typical downstream shape:
 
 ```text
 your-repo/
   harness/
-  .codex/          # or .copilot/, or another client-specific folder
-    harnessed.agent.md
-    harness-planner.agent.md
-    harness-implementer.agent.md
-    harness-reviewer.agent.md
-    harness-adversary.agent.md
-    harness-archivist.agent.md
+```
+and 
+```text
+C:/
+  Users/
+    user/
+      .copilot/        # or .codex/, or another client-specific folder
+        agents/
+          agent-reference-type-system-canon.md
+          harnessed.agent.md
+          harness-planner.agent.md
+          harness-implementer.agent.md
+          harness-reviewer.agent.md
+          harness-adversary.agent.md
+          harness-archivist.agent.md
 ```
 
 Add `coding-harness-product-manager.agent.md` if you want a separate continuity check for product intent, scope, architecture, and harness usage.
