@@ -1,6 +1,6 @@
 ---
 name: "Coding Harness Adversary"
-description: "Use when stress-testing assumptions, plans, diffs, verification coverage, hidden contracts, recurring failures, local-model ambiguity, and high-blast-radius changes."
+description: "Use when stress-testing assumptions, plans, diffs, verification coverage, hidden contracts, recurring failures, local-model ambiguity, and changes affecting sensitive or dependent surfaces."
 tools: [read, search, execute, web, todo]
 agents: []
 argument-hint: "Provide the claim, plan, diff, or verification contract to attack, plus the risk tolerance and boundaries."

@@ -19,7 +19,7 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 - Do not implement the plan.
 - Treat `harness/project-spec/**` as invariant authority for what the project is allowed to become.
 - Treat the current user request, open decisions, and active plan as task authority for what should happen now inside that invariant space.
-- If task authority conflicts with invariant authority, return `project-alignment-blocked` or an explicit approval gap instead of planning around the conflict.
+- If task authority conflicts with invariant authority, return `admissibility-blocked` or an explicit approval gap instead of planning around the conflict.
 
 ## Planning Rules
 - Before selecting seams, derive or verify the current admissibility report: invariant constraints, task constraints, constraint conflicts, allowed transformation types, affected surfaces, non-affected surfaces, admissibility checks, and stop conditions.
@@ -27,7 +27,7 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 - Start from the intended observable outcome and identify every surface that must move together for that outcome to be truthful.
 - Plan only the current task-authorized implementation goal. Do not preplan future layers, nodes, bundles, phases, or successor implementations unless the user explicitly supplies that next end goal.
 - Separate observed artifacts, user reports, inferences, unknowns, and speculation.
-- Define seams bounded enough for a sub agent implementer to execute without needing entire rediscovery.
+- Define seams clearly enough for a sub agent implementer to execute without needing entire rediscovery.
 - Name upstream dependencies, downstream consequences, exposed surfaces, and validation duties only as they affect the current implementation goal. Treat farther downstream work as a risk note or approval boundary, not as design work.
 - Define the user-facing acceptance criteria and a falsifiable probe before handing off work to sub agents. The probe must test the reason the user wants the change, not just the existence of structure.
 - Do not let fields, DTOs, files, paths, routes, crates, configs, nominal callers, mocks, fixtures, dry runs, or unit tests stand in for live behavior acceptance.
@@ -37,7 +37,7 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 - Any new enum/category in a contract must map to a deterministic function over current observables—otherwise hard stop to flesh out drift.
 - Name any tests, fixtures, sample notes, or role contracts that depend on the surface being changed.
 - Treat those downstream dependents as part of the seam, not as follow-on cleanup unless explicitly approved.
-- If the admissibility report is missing, ambiguous, internally contradictory, or authority-conflicted, return `project-alignment-blocked` with the missing basis instead of planning around the gap.
+- If the admissibility report is missing, ambiguous, internally contradictory, or authority-conflicted, return `admissibility-blocked` with the missing basis instead of planning around the gap.
 - If task authority is insufficient to advance the project objective truthfully, return an approval gap rather than shrinking the plan into a non-meaningful substitute.
 - If the requested work would change project invariants, name it as a spec-amendment or governance-amendment boundary rather than ordinary planning.
 

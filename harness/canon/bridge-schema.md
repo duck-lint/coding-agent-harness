@@ -6,11 +6,11 @@ Use this full schema for high-risk or epistemically sensitive moves. For local c
 
 - Source / provenance: what is actually observed or reported, and what authority it can carry.
 - Method: what reasoning, trace, test, call site, or contract connects the source to the conclusion.
-- Conditions: assumptions, scope limits, and what must hold for the bridge to work.
+- Conditions: assumptions, applicability limits, and what must hold for the bridge to work.
 - Target: the resulting claim, recommendation, or action, including register, provenance, and action state.
 - Preserves: what survives the translation.
 - Breaks: what is lost, uncertain, or not carried over.
-- Cash-out: expected repo effect, validation path, and likely blast radius.
+- Cash-out: expected repo effect, validation path, and expected affected surfaces.
 
 ## When Required
 

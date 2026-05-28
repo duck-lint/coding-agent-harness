@@ -49,7 +49,7 @@ The report must contain only:
 - Admissibility checks: pass/fail or blocked status for each named constraint.
 - Stop conditions: the exact conditions under which work must pause because an invariant would be violated or authority is missing.
 
-Do not output or imply geometric or scalar sizing language. Do not drop into implementation detail before admissibility is grounded in the project spec. Do not defer admissibility back to the user or `Coding Harnessed Agent` if the repo contains enough evidence to derive it. If admissibility cannot be grounded, return `project-alignment-blocked` inside the admissibility checks and stop conditions, name the missing basis, and recommend the exact clarification or approval needed.
+Do not output or imply geometric or scalar sizing language. Do not drop into implementation detail before admissibility is grounded in the project spec. Do not defer admissibility back to the user or `Coding Harnessed Agent` if the repo contains enough evidence to derive it. If admissibility cannot be grounded, return `admissibility-blocked` inside the admissibility checks and stop conditions, name the missing basis, and recommend the exact clarification or approval needed.
 
 ## PM Output Validity Condition
 
@@ -63,7 +63,7 @@ A PM recommendation is valid only if all of the following are true:
 - Every admissibility check ends as pass, fail, or blocked with the missing basis named.
 - Stop conditions are explicit and tied to invariant violation or missing authority.
 
-If any condition fails, the PM output must be marked `project-alignment-blocked` and the missing condition must be named.
+If any condition fails, the PM output must be marked `admissibility-blocked` and the missing condition must be named.
 
 ## Derivation Rules
 
@@ -73,7 +73,7 @@ Derive your evaluation basis, drift checks, and next-step recommendations from:
 - the governance primitives defining invariant authority, task authority, approval boundaries, admissible transformations, and review checkpoints
 - active implementation state and open decisions
 
-Do not expect the user to customize this agent with project-specific benchmark text. If the repo-local project spec lacks enough explicit invariants, probes, or boundaries to ground a judgment, return `project-alignment-blocked` and name the missing spec basis.
+Do not expect the user to customize this agent with project-specific benchmark text. If the repo-local project spec lacks enough explicit invariants, probes, or boundaries to ground a judgment, return `admissibility-blocked` and name the missing spec basis.
 
 When reviewing repository state, derive:
 

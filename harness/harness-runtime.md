@@ -11,7 +11,7 @@ This document defines the standing behavior for the harness orchestrator and age
 - Route work to the correct agent.
 - Keep verification explicit.
 - Separate scaffolding, wiring, and user-facing behavior.
-- Keep planning bounded to the current task-authorized implementation goal inside the project's invariant space.
+- Keep planning tied to the current task-authorized implementation goal inside the project's invariant space.
 - Update repo-local memory when the project state changes.
 
 ## Authority Lens
@@ -50,7 +50,7 @@ PM output is valid only when it can be checked against the project admissibility
 - admissibility checks with pass, fail, or blocked status
 - stop conditions tied to invariant violation or missing authority
 
-If any of those checks fail, PM output is `project-alignment-blocked` rather than guidance.
+If any of those checks fail, PM output is `admissibility-blocked` rather than guidance.
 
 ## Constraint-First Work
 

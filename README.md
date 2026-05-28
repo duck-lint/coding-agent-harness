@@ -11,7 +11,7 @@ The point of the harness is not “more agents for their own sake.” The point 
 The user should talk to one orchestrator:
 
 ```text
-user → harnessed.agent.md → harness contracts + repo-local state → bounded role agents when needed
+user → harnessed.agent.md → harness contracts + repo-local state → specialized role agents when needed
 ```
 
 That is the important shape.
@@ -95,7 +95,7 @@ Normal use should look like this:
 2. `coding-harnessed` starts with an ask-first scout pass unless implementation was explicitly authorized.
 3. `coding-harnessed` reads the relevant repo-local harness contracts and state.
 4. `coding-harnessed` grounds the work in the current admissibility report, then identifies affected and non-affected surfaces, approval boundaries, and the intent-complete change.
-5. `coding-harnessed` delegates bounded work to the relevant role agent when needed.
+5. `coding-harnessed` delegates assigned work to the relevant role agent when needed.
 6. `coding-harnessed` keeps the user in one conversation instead of making them manually coordinate sub-agents.
 
 Optional companion workflow:
@@ -112,7 +112,7 @@ This is the portable repo-local working memory that gets copied into a target re
 
 * `1.README.md`: orientation for harnessed work in this repo
 * `harness-runtime.md`: runtime contract and approval boundaries
-* `2.sub-agent-assignment-template.md`: handoff format for bounded sub-agent work
+* `2.sub-agent-assignment-template.md`: handoff format for assigned sub-agent work
 * `3.sub-agent-roles.md`: role responsibilities and handoff rules
 * `4.archive-policy.md`: when and how completed work moves to archive
 * `5.known-failures.md`: recurring harness or repo failure patterns
@@ -130,7 +130,7 @@ These are the agent definitions you install in the client-specific folder.
 
 | File                                   | Role in the workflow                                                                                                                 |
 | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `coding-harnessed.agent.md`                   | User-facing orchestrator. Owns the conversation, blast-radius summary, approval boundaries, delegation, and final integration.       |
+| `coding-harnessed.agent.md`                   | User-facing orchestrator. Owns the conversation, affected-surface summary, approval boundaries, delegation, and final integration.       |
 | `coding-harness-planner.agent.md`             | Internal planning role used by `coding-harnessed` to define seams, non-goals, affected surfaces, approval gates, and verification duties.   |
 | `coding-harness-implementer.agent.md`         | Internal implementation role used by `coding-harnessed` to execute one approved seam at a time and validate immediately.                    |
 | `coding-harness-reviewer.agent.md`            | Internal review role used by `coding-harnessed` to judge implementation against the plan and verification contract.                         |
@@ -157,7 +157,7 @@ For normal work, the harness should:
 * default to a read-only scout pass unless the user explicitly asks to implement now
 * make affected and non-affected surfaces explicit before behavior-changing edits
 * ground multi-step, risky, or behavior-facing work in the repo-local project spec
-* keep the planning horizon bounded to the current user-authorized goal
+* keep planning tied to the current user-authorized goal
 * stop for approval before crossing risky boundaries
 * require explicit verification and named user-facing acceptance probes for non-trivial work
 * keep decisions, failures, handoffs, and implementation state in the repo instead of only in chat history
