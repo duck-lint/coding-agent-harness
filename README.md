@@ -94,7 +94,7 @@ Normal use should look like this:
 1. The user invokes `coding-harnessed.agent.md`.
 2. `coding-harnessed` starts with an ask-first scout pass unless implementation was explicitly authorized.
 3. `coding-harnessed` reads the relevant repo-local harness contracts and state.
-4. `coding-harnessed` grounds the work in the project-spec alignment frame, then identifies blast radius, approval boundaries, and the intent-complete bounded change.
+4. `coding-harnessed` grounds the work in the current admissibility report, then identifies affected and non-affected surfaces, approval boundaries, and the intent-complete change.
 5. `coding-harnessed` delegates bounded work to the relevant role agent when needed.
 6. `coding-harnessed` keeps the user in one conversation instead of making them manually coordinate sub-agents.
 
@@ -155,7 +155,7 @@ The docs in this repo are designed to keep the following things explicit:
 For normal work, the harness should:
 
 * default to a read-only scout pass unless the user explicitly asks to implement now
-* make blast radius explicit before behavior-changing edits
+* make affected and non-affected surfaces explicit before behavior-changing edits
 * ground multi-step, risky, or behavior-facing work in the repo-local project spec
 * keep the planning horizon bounded to the current user-authorized goal
 * stop for approval before crossing risky boundaries

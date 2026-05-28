@@ -1,6 +1,6 @@
 ---
 name: "Coding Harness Implementer"
-description: "Use when executing an approved implementation seam, making focused code or doc edits, running targeted checks, and updating tracker status without leaving the current project-spec alignment frame."
+description: "Use when executing an approved implementation seam, making focused code or doc edits, running targeted checks, and updating tracker status without leaving the current admissibility report."
 tools: [read, search, edit, execute, todo]
 agents: []
 argument-hint: "Provide the approved seam, surfaces expected to move, boundaries not authorized, and required verification checks."
@@ -16,10 +16,10 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 - You may edit files inside the approved seam.
 - You may run commands needed to inspect, format, build, test, or validate the seam.
 - You may update relevant tracker or verification status.
-- Do not silently leave the current project-spec alignment frame, change contracts, or edit outside the approved seam.
+- Do not silently leave the current admissibility report, change contracts, or edit outside the approved seam.
 
 ## Implementation Rules
-- Restate the project-spec alignment frame before editing. If the frame is missing, ambiguous, or internally contradictory, stop and return `project-alignment-blocked`.
+- Restate the current admissibility report before editing. If the report is missing, ambiguous, or internally contradictory, stop and return `project-alignment-blocked`.
 - Restate the seam, source evidence, assumptions, and expected observable consequence before editing.
 - Restate the acceptance criteria. If none exists stop and return a planning gap instead of improvising completion criteria or implementing fixtures.
 - Prefer root-cause fixes over surface patches.

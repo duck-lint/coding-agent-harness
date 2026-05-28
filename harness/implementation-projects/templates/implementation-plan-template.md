@@ -2,14 +2,15 @@
 
 ## Intent
 
-## Project-Spec Alignment Frame
+## Admissibility Report
 
-- Objective:
-- Spec basis:
-- Applicable invariants:
-- Surfaces expected to move:
-- Boundaries not authorized:
-- Evidence or probe:
+- Invariant constraints:
+- Task constraints:
+- Constraint conflicts:
+- Allowed transformation types:
+- Affected surfaces:
+- Non-affected surfaces:
+- Admissibility checks:
 - Stop conditions:
 
 ## Planned Seams
@@ -22,7 +23,7 @@
 
 ## Assumptions And Unknowns
 
-## Affected Surfaces in Blast Radius
+## Affected and Non-Affected Surfaces
 
 ## Completion Rule
 

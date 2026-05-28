@@ -6,8 +6,8 @@ This document defines the standing behavior for the harness orchestrator and age
 
 - Identify the controlling surface.
 - Separate evidence, inference, unknowns, and speculation.
-- Ground multi-step, risky, or behavior-facing work in the project-spec alignment frame before choosing files or tasks.
-- Identify blast radius before behavior-changing edits.
+- Ground multi-step, risky, or behavior-facing work in a project admissibility report before choosing files or tasks.
+- Identify affected and non-affected surfaces before behavior-changing edits.
 - Route work to the correct agent.
 - Keep verification explicit.
 - Separate scaffolding, wiring, and user-facing behavior.
@@ -21,39 +21,42 @@ This document defines the standing behavior for the harness orchestrator and age
 - Open decisions and active plans may interpret or sequence project work, but they do not silently override project-spec invariants.
 - If task authority conflicts with invariant authority, stop and surface the conflict instead of improvising around it.
 
-## Project-Spec Alignment Frame
+## Project Admissibility Report
 
-The project-spec alignment frame carries the relevant project intent from `harness/project-spec/**` through PM review, planning, implementation, review, and archive. It is not a new project ontology or authority layer. It is a lightweight way to name which parts of the project spec govern the current work.
+The project admissibility report carries the relevant project constraints from `harness/project-spec/**` through PM review, planning, implementation, review, and archive. It is not a new project ontology or authority layer. It is a strict report format for naming what is admissible under the current project spec and request.
 
-For multi-step, risky, or behavior-facing work, the frame should state:
+For multi-step, risky, or behavior-facing work, the report should state:
 
-- Objective: the user-facing or runtime behavior the work is meant to advance.
-- Spec basis: the project-spec documents and governance primitives that authorize the objective, plus any open decisions, active plan, or current task instruction selecting the present work.
-- Applicable invariants: project truths, fixture roles, compatibility promises, authority distinctions, or approval boundaries that must remain true.
-- Surfaces expected to move: code, tests, samples, docs, harness state, or runtime surfaces likely needed for truthful progress.
-- Boundaries not authorized: future work, broad rewrites, providers, storage, schema, deployment, or other surfaces not authorized for the current directive.
-- Evidence or probe: the observable check or saved evidence that answers whether the work advanced the objective.
-- Stop conditions: missing authority, unclear project intent, failed probe, unavailable dependency, or boundary crossing.
+- Invariant constraints: project-spec constraints that govern the request.
+- Task constraints: current-request constraints that govern what is being asked now.
+- Constraint conflicts: any direct conflict, ambiguity, or missing basis between invariant constraints and task constraints.
+- Allowed transformation types: only the transformations, approval requests, or amendment requests currently admissible.
+- Affected surfaces: explicitly named surfaces whose contents, role, or meaning would change.
+- Non-affected surfaces: explicitly named surfaces that must remain untouched or semantically unchanged.
+- Admissibility checks: pass, fail, or blocked status for each named constraint.
+- Stop conditions: the exact conditions under which work must pause because an invariant would be violated or authority is missing.
 
-If the frame cannot be grounded in repo state, invariant authority, or task authority, stop and ask for the missing authority or clarification. Do not continue by treating blast radius as the project boundary.
+If the report cannot be grounded in repo state, invariant authority, or task authority, stop and ask for the missing authority or clarification.
 
 ## PM Output Validity
 
-PM output is valid only when it can be checked against the project-spec alignment frame and the project-spec validity condition. In practice, that means the PM must show:
+PM output is valid only when it can be checked against the project admissibility report and the project-spec validity condition. In practice, that means the PM must show:
 
-- preserved invariants
-- admissible transformation mapping
-- no silent override of invariant authority by task authority
-- explicit traceability from change surfaces to project-spec constraints
-- evidence or probe support for non-trivial claims
+- invariant constraints cited from the project spec
+- task constraints separated from invariant constraints
+- conflicts or missing bases surfaced explicitly
+- allowed transformation types named from the governance primitives or approval boundaries
+- affected and non-affected surfaces named truthfully
+- admissibility checks with pass, fail, or blocked status
+- stop conditions tied to invariant violation or missing authority
 
 If any of those checks fail, PM output is `project-alignment-blocked` rather than guidance.
 
-## Intent-First Bounded Work
+## Constraint-First Work
 
-- Choose the implementation shape that realizes the current project intent within current task authority, project invariants, approval boundaries, and verification requirements.
-- Do not optimize for size, narrowness, or mechanical locality. Use blast radius, reversibility, review burden, and verification cost as risk controls, not as primary goals.
-- If multiple project-aligned approaches are available, prefer the one with lower blast radius and clearer verification.
+- Choose the implementation shape that satisfies named invariant constraints, task constraints, allowed transformation types, and verification requirements.
+- Do not optimize by change size, local containment, or other sizing language. Prefer the approach whose admissibility checks, affected surfaces, and verification consequences can be stated truthfully.
+- If multiple admissible approaches are available, prefer the one with clearer constraint satisfaction and clearer verification.
 - If task authority is insufficient to advance the project objective truthfully, stop and ask for the missing authority. Do not shrink the work into a non-meaningful substitute just to preserve locality.
 - If the requested task would change what the project is allowed to become, treat that as an invariant-authority amendment request rather than ordinary task selection.
 
@@ -83,15 +86,15 @@ Use the full bridge schema in [canon/bridge-schema.md](canon/bridge-schema.md) o
 
 ## Start Rule
 
-Default to read-only scout mode unless the user explicitly asks to implement. If implementation is requested, state the blast radius before editing and proceed.
+Default to read-only scout mode unless the user explicitly asks to implement. If implementation is requested, state the affected and non-affected surfaces before editing and proceed.
 
-## Planning Horizon Rule
+## Current Goal Rule
 
 The active planning horizon is the current task-authorized implementation goal. Sketch contracts only for seams needed to complete that goal or for approval boundaries it touches. Do not preplan future layers, nodes, bundles, phases, or successor implementations unless the user explicitly provides the next end goal.
 
 ## Stop Rule
 
-Stop and ask before crossing approval boundaries, leaving the current project-spec alignment frame, making changes whose correctness depends on project intent that is not available in the repo, or treating task authority as if it silently overrode invariant authority.
+Stop and ask before crossing approval boundaries, failing an admissibility check, making changes whose correctness depends on project intent that is not available in the repo, or treating task authority as if it silently overrode invariant authority.
 
 ## Done Rule
 

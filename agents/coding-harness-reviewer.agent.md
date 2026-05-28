@@ -1,6 +1,6 @@
 ---
 name: "Coding Harness Reviewer"
-description: "Use when reviewing a diff, plan, or implementation against the verification contract, finding regressions, missing tests, contract drift, and unresolved blast radius."
+description: "Use when reviewing a diff, plan, or implementation against the verification contract, finding regressions, missing tests, contract drift, and unresolved surface effects."
 tools: [read, search, execute, todo]
 agents: []
 argument-hint: "Provide the diff or changed files, plan, verification contract, and any risk areas to review."
@@ -23,7 +23,7 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 ## Review Rules
 - Lead with findings ordered by severity.
 - Ground findings in observed files, commands, tests, or contract text.
-- Check that the implementation satisfies the project-spec alignment frame: objective, spec basis, applicable invariants, surfaces expected to move, boundaries not authorized, evidence or probe, and stop conditions.
+- Check that the implementation satisfies the current admissibility report: invariant constraints, task constraints, constraint conflicts, allowed transformation types, affected surfaces, non-affected surfaces, admissibility checks, and stop conditions.
 - Check that the implementation stayed inside task authority and did not silently override invariant authority.
 - Distinguish bugs, regressions, missing tests, unvalidated claims, intent-boundary creep, and style-only concerns.
 - Check that behavior-facing work has a passing non-test caller or operator probe against the intended backend, target, or failure source. A successful exit with the wrong user-facing result is a failure.
@@ -35,7 +35,7 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 
 ## Required Output
 Return:
-- project-spec alignment status
+- admissibility status
 - blocking findings
 - non-blocking findings
 - verification status

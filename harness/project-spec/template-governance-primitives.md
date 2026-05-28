@@ -84,14 +84,15 @@ Repeat this block as needed for the probes that demonstrate real project progres
 - Evidence that must be inspectable or saved:
 - What does not count as proof:
 
-## Alignment Inputs For Harness Work
+## Admissibility Inputs For Harness Work
 
-When the harness needs a bounded alignment frame, derive it from this file and the rest of `harness/project-spec/**` by naming:
+When the harness needs a strict admissibility report, derive it from this file and the rest of `harness/project-spec/**` by naming:
 
-- Objective:
-- Spec basis:
-- Applicable invariants:
-- Surfaces expected to move:
-- Boundaries not authorized:
-- Evidence or probe:
+- Invariant constraints:
+- Task constraints:
+- Constraint conflicts:
+- Allowed transformation types:
+- Affected surfaces:
+- Non-affected surfaces:
+- Admissibility checks:
 - Stop conditions:
