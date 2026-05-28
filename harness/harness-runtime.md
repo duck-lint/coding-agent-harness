@@ -11,8 +11,15 @@ This document defines the standing behavior for the harness orchestrator and age
 - Route work to the correct agent.
 - Keep verification explicit.
 - Separate scaffolding, wiring, and user-facing behavior.
-- Keep planning bounded to the current user-authorized implementation goal.
+- Keep planning bounded to the current task-authorized implementation goal inside the project's invariant space.
 - Update repo-local memory when the project state changes.
+
+## Authority Lens
+
+- Invariant authority lives in `harness/project-spec/**`. It defines what the project is allowed to become.
+- Task authority selects or sequences the current work inside that invariant space. It usually comes from the current user instruction, open decisions, and the active plan.
+- Open decisions and active plans may interpret or sequence project work, but they do not silently override project-spec invariants.
+- If task authority conflicts with invariant authority, stop and surface the conflict instead of improvising around it.
 
 ## Project-Spec Alignment Frame
 
@@ -21,14 +28,14 @@ The project-spec alignment frame carries the relevant project intent from `harne
 For multi-step, risky, or behavior-facing work, the frame should state:
 
 - Objective: the user-facing or runtime behavior the work is meant to advance.
-- Spec basis: the project-spec documents, open decisions, active plan, or user instruction that govern the objective.
+- Spec basis: the project-spec documents and governance primitives that authorize the objective, plus any open decisions, active plan, or current task instruction selecting the present work.
 - Applicable invariants: project truths, fixture roles, compatibility promises, authority distinctions, or approval boundaries that must remain true.
 - Surfaces expected to move: code, tests, samples, docs, harness state, or runtime surfaces likely needed for truthful progress.
 - Boundaries not authorized: future work, broad rewrites, providers, storage, schema, deployment, or other surfaces not authorized for the current directive.
 - Evidence or probe: the observable check or saved evidence that answers whether the work advanced the objective.
 - Stop conditions: missing authority, unclear project intent, failed probe, unavailable dependency, or boundary crossing.
 
-If the frame cannot be grounded in repo state or user authorization, stop and ask for the missing authority or clarification. Do not continue by treating blast radius as the project boundary.
+If the frame cannot be grounded in repo state, invariant authority, or task authority, stop and ask for the missing authority or clarification. Do not continue by treating blast radius as the project boundary.
 
 ## PM Output Validity
 
@@ -36,7 +43,7 @@ PM output is valid only when it can be checked against the project-spec alignmen
 
 - preserved invariants
 - admissible transformation mapping
-- no unauthorized authority escalation
+- no silent override of invariant authority by task authority
 - explicit traceability from change surfaces to project-spec constraints
 - evidence or probe support for non-trivial claims
 
@@ -44,10 +51,11 @@ If any of those checks fail, PM output is `project-alignment-blocked` rather tha
 
 ## Intent-First Bounded Work
 
-- Choose the implementation shape that realizes the current project intent within explicit user authorization, project invariants, approval boundaries, and verification requirements.
+- Choose the implementation shape that realizes the current project intent within current task authority, project invariants, approval boundaries, and verification requirements.
 - Do not optimize for size, narrowness, or mechanical locality. Use blast radius, reversibility, review burden, and verification cost as risk controls, not as primary goals.
 - If multiple project-aligned approaches are available, prefer the one with lower blast radius and clearer verification.
-- If the authorized boundary is insufficient to advance the project objective truthfully, stop and ask for the missing authority. Do not shrink the work into a non-meaningful substitute just to preserve locality.
+- If task authority is insufficient to advance the project objective truthfully, stop and ask for the missing authority. Do not shrink the work into a non-meaningful substitute just to preserve locality.
+- If the requested task would change what the project is allowed to become, treat that as an invariant-authority amendment request rather than ordinary task selection.
 
 ## Claim Discipline
 
@@ -79,11 +87,11 @@ Default to read-only scout mode unless the user explicitly asks to implement. If
 
 ## Planning Horizon Rule
 
-The active planning horizon is the current user-authorized implementation goal. Sketch contracts only for seams needed to complete that goal or for approval boundaries it touches. Do not preplan future layers, nodes, bundles, phases, or successor implementations unless the user explicitly provides the next end goal.
+The active planning horizon is the current task-authorized implementation goal. Sketch contracts only for seams needed to complete that goal or for approval boundaries it touches. Do not preplan future layers, nodes, bundles, phases, or successor implementations unless the user explicitly provides the next end goal.
 
 ## Stop Rule
 
-Stop and ask before crossing approval boundaries, leaving the current project-spec alignment frame, or making changes whose correctness depends on project intent that is not available in the repo.
+Stop and ask before crossing approval boundaries, leaving the current project-spec alignment frame, making changes whose correctness depends on project intent that is not available in the repo, or treating task authority as if it silently overrode invariant authority.
 
 ## Done Rule
 
