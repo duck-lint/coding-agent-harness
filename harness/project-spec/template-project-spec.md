@@ -64,7 +64,7 @@ Repeat this block as needed for the probes that define real progress.
 ## Open Questions To Clarify When They Matter
 
 - Decision that would materially change the next implementation directive:
-- Safe corpus, dataset, sample, or scope for early probes:
+- Safe corpus, dataset, or sample for early probes:
 - External-call, privacy, mutation, or deployment constraints:
 - First interface surface to prove:
 - Unknown that is acceptable to defer for now:

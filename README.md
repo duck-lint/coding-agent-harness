@@ -157,7 +157,7 @@ For normal work, the harness should:
 * default to a read-only scout pass unless the user explicitly asks to implement now
 * make affected and non-affected surfaces explicit before behavior-changing edits
 * ground multi-step, risky, or behavior-facing work in the repo-local project spec
-* keep planning tied to the current user-authorized goal
+* keep planning tied to the current task-authorized goal
 * stop for approval before crossing risky boundaries
 * require explicit verification and named user-facing acceptance probes for non-trivial work
 * keep decisions, failures, handoffs, and implementation state in the repo instead of only in chat history

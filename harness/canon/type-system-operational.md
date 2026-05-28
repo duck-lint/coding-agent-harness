@@ -41,7 +41,7 @@ For normal coding work, say the source, inference, unknowns, expected consequenc
 ## Common Category Errors
 
 - Treating a user preference as a runtime constraint.
-- Treating a test as proof of all behavior outside its scope.
+- Treating a test as proof of behavior it did not actually exercise.
 - Treating persuasive wording as evidence.
 - Treating a representation of behavior as the behavior itself.
 - Treating a proposed fix as implemented or validated.

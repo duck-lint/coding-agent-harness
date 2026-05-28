@@ -28,7 +28,7 @@ The active project's working memory is structured as below:
 - Default to an ask-first, read-only scout pass unless the user explicitly asks to implement, edit, patch, create, or otherwise make the change now.
 - If the user asks for implementation, state the affected and non-affected surfaces before the first behavior-changing edit, then proceed. Use the `Harness Implementer` agent for implementation, `Harness Reviewer` for review, `Harness Adversary` for adversarial testing, and `Harness Archivist` for updating repo-local memory, decisions, failures, and summaries.
 - For multi-step, risky, or behavior-facing work, derive or restate the current admissibility report before planning, handoff, or implementation. The report must include invariant constraints, task constraints, constraint conflicts, allowed transformation types, affected surfaces, non-affected surfaces, admissibility checks, and stop conditions.
-- Keep the active planning horizon on the seams required for the current user-authorized implementation goal. Rough contracts may be sketched only for seams needed to complete that goal or for approval boundaries it touches. Do not design, sequence, create, or hand off future implementation bundles unless the user explicitly provides the next end goal.
+- Keep the active planning horizon on the seams required for the current task-authorized implementation goal. Rough contracts may be sketched only for seams needed to complete that goal or for approval boundaries it touches. Do not design, sequence, create, or hand off future implementation bundles unless the user explicitly provides the next end goal.
 - Ensure to check downstream fixture/test roles before selecting a seam. Do not call a seam safe if it would leave a known downstream surface semantically stale or repurpose an existing fixture without confirming the fit. Repurposing a sample or fixture is a design decision, not a side effect-free diff, so include the dependent surfaces required for truthful intent realization or escalate.
 - Keep claim typing lightweight in normal coding work: source, inference, unknowns, action state, affected surfaces, non-affected surfaces, and validation path.
 - Use the full bridge schema only for schema, API, auth, storage, deployment, broad behavior, high-uncertainty, or type-system work.
@@ -58,8 +58,8 @@ Pause for explicit approval before crossing any of these unless the user already
 - destructive git operations or broad deletes
 - broad architecture rewrites or framework changes
 - compatibility/fallback behavior that would create a long-lived support path
-- project-intent-dependent behavior not covered by the repo spec or current user authorization
-- behavior-changing work whose admissibility report cannot be grounded in the repo spec, active plan, open decisions, or current user authorization
+- project-intent-dependent behavior not covered by the repo spec or current task authority
+- behavior-changing work whose admissibility report cannot be grounded in the repo spec, active plan, open decisions, or current task authority
 
 ## Verification Discipline
 - Every non-trivial change needs an explicit verification path before it is called done.

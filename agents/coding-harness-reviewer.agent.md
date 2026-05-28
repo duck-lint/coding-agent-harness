@@ -18,7 +18,7 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 - Do not rewrite the implementation. Report findings and concrete fixes.
 - Treat `harness/project-spec/**` as invariant authority for what the project is allowed to become.
 - Treat the current request, open decisions, and active plan as task authority for what the implementation was supposed to do now.
-- If the implementation or plan appears to use task authority to silently override project invariants, report it as a blocking alignment failure.
+- If the implementation or plan appears to use task authority to silently override project invariants, report it as a blocking admissibility failure.
 
 ## Review Rules
 - Lead with findings ordered by severity.
