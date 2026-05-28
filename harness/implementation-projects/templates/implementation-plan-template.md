@@ -2,6 +2,16 @@
 
 ## Intent
 
+## Project-Spec Alignment Frame
+
+- Objective:
+- Spec basis:
+- Applicable invariants:
+- Surfaces expected to move:
+- Boundaries not authorized:
+- Evidence or probe:
+- Stop conditions:
+
 ## Planned Seams
 
 ## Non-Goals
@@ -27,7 +37,7 @@
 - [ ] Deployment
 - [ ] Destructive operation
 - [ ] Broad architecture
-- [ ] project intent
+- [ ] Project-intent authority not covered by spec or current authorization
 
 ## Closeout Note
 

@@ -18,7 +18,7 @@ That is the important shape.
 
 `harnessed.agent.md` is the user-facing orchestrator. The planner, implementer, reviewer, adversary, and archivist are internal roles that `harnessed` may use when the work calls for them. They are not meant to become separate day-to-day entrypoints.
 
-There is also an optional separate project-manager companion agent. That agent is not part of the `harnessed` role chain. The user consults it directly when they want project, scope, architecture, or harness-discipline continuity pressure-tested, then carries the resulting correction or decision back into `harnessed`.
+There is also an optional separate project-manager companion agent. That agent is not part of the `harnessed` role chain. The user consults it directly when they want project, intent-boundary, architecture, or harness-discipline continuity pressure-tested, then carries the resulting correction or decision back into `harnessed`.
 
 ## What this repository is for
 
@@ -31,7 +31,7 @@ The harness exists to prevent common failure modes in iterative AI-assisted codi
 * ephemeral chat history being treated as authoritative memory
 * theoretical/structural progress being mistaken for live, user-facing behavior
 
-The harness adds structure around those failure modes without turning every small edit into bureaucracy.
+The harness adds structure around those failure modes without turning every trivial edit into bureaucracy.
 
 ## What gets copied where
 
@@ -67,8 +67,7 @@ your-repo/
         implementation-plan-template.md
         implementation-tracker-template.md
     project-spec/
-      governance-primitives.md
-      project-spec.md
+      *.md
 ```
 and 
 ```text
@@ -86,7 +85,7 @@ C:/
           coding-harness-archivist.agent.md
 ```
 
-Add `coding-harness-project-manager.agent.md` if you want a separate continuity check for project intent, scope, architecture, and harness usage.
+Add `coding-harness-project-manager.agent.md` if you want a separate continuity check for project intent, intent-boundary, architecture, and harness usage.
 
 ## Main workflow
 
@@ -95,14 +94,14 @@ Normal use should look like this:
 1. The user invokes `coding-harnessed.agent.md`.
 2. `coding-harnessed` starts with an ask-first scout pass unless implementation was explicitly authorized.
 3. `coding-harnessed` reads the relevant repo-local harness contracts and state.
-4. `coding-harnessed` identifies blast radius, approval boundaries, and the smallest coherent change, not smallest mechanical change.
+4. `coding-harnessed` grounds the work in the project-spec alignment frame, then identifies blast radius, approval boundaries, and the intent-complete bounded change.
 5. `coding-harnessed` delegates bounded work to the relevant role agent when needed.
 6. `coding-harnessed` keeps the user in one conversation instead of making them manually coordinate sub-agents.
 
 Optional companion workflow:
 
 1. The user consults `coding-harness-project-manager.agent.md`.
-2. The Project Manager pressure-tests project goal, scope, architecture, and drift risk then suggests corrections or next steps.
+2. The Project Manager pressure-tests project goal, intent-boundary, architecture, and drift risk then suggests corrections or next steps.
 3. The user carries the useful correction or decision back into `coding-harnessed`.
 
 ## Repo contents
@@ -123,8 +122,7 @@ This is the portable repo-local working memory that gets copied into a target re
 * `implementation-projects/active/`: the one live numbered implementation bundle, when needed
 * `implementation-projects/archive/`: completed numbered implementation bundles
 * `implementation-projects/templates/`: plan and tracker templates
-* `project-spec/governance-primitives.md`: project-local governance rules, approval boundaries, and authority distinctions
-* `project-spec/project-spec.md`: project-local intent, semantics, architecture, and constraints
+* `project-spec/**/*.md`: project-local intent, semantics, architecture, governance rules, approval boundaries, and authority distinctions. Project-specific filenames are allowed.
 
 ### `agents/`
 
@@ -158,6 +156,7 @@ For normal work, the harness should:
 
 * default to a read-only scout pass unless the user explicitly asks to implement now
 * make blast radius explicit before behavior-changing edits
+* ground multi-step, risky, or behavior-facing work in the repo-local project spec
 * keep the planning horizon bounded to the current user-authorized goal
 * stop for approval before crossing risky boundaries
 * require explicit verification and named user-facing acceptance probes for non-trivial work
@@ -195,7 +194,7 @@ The harness docs and the agent definitions can evolve separately, so downstream 
 * this is not a package dependency
 * this is not a hidden-memory agent system
 * this is not a substitute for project decisions or approval at risky boundaries
-* this is not meant to force heavyweight paperwork onto every small edit
+* this is not meant to force heavyweight paperwork onto every trivial edit
 * this is not a workflow where the user manually coordinates the internal role agents as peers
 * this is not a signal that sub-agents are the point; the point is the contract and the continuity layer
 
@@ -204,7 +203,7 @@ The harness docs and the agent definitions can evolve separately, so downstream 
 This repo packages a portable harness where:
 
 * `harness/` lives in the target repo
-* `harness/project-spec/` = authoritative semantic substrate
+* `harness/project-spec/` = authoritative semantic substrate, with project-specific filenames allowed
 * the `.agent.md` files live in the client folder
 * the user talks to `coding-harnessed`
 * `coding-harnessed` operates through harness contracts and repo-local state

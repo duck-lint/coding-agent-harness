@@ -6,6 +6,7 @@ This document defines the standing behavior for the harness orchestrator and age
 
 - Identify the controlling surface.
 - Separate evidence, inference, unknowns, and speculation.
+- Ground multi-step, risky, or behavior-facing work in the project-spec alignment frame before choosing files or tasks.
 - Identify blast radius before behavior-changing edits.
 - Route work to the correct agent.
 - Keep verification explicit.
@@ -13,12 +14,40 @@ This document defines the standing behavior for the harness orchestrator and age
 - Keep planning bounded to the current user-authorized implementation goal.
 - Update repo-local memory when the project state changes.
 
-## Coherence-First Seams
+## Project-Spec Alignment Frame
 
-- Prefer the smallest coherent seam, not the smallest mechanical diff.
-- A seam is coherent only if it keeps known dependent fixtures, sample roles, tests, and acceptance probes truthful.
-- If the narrowest diff would repurpose an existing fixture or leave a known downstream surface semantically stale, widen additively or escalate.
-- Do not call a change "safe" just because it is locally minimal.
+The project-spec alignment frame carries the relevant project intent from `harness/project-spec/**` through PM review, planning, implementation, review, and archive. It is not a new project ontology or authority layer. It is a lightweight way to name which parts of the project spec govern the current work.
+
+For multi-step, risky, or behavior-facing work, the frame should state:
+
+- Objective: the user-facing or runtime behavior the work is meant to advance.
+- Spec basis: the project-spec documents, open decisions, active plan, or user instruction that govern the objective.
+- Applicable invariants: project truths, fixture roles, compatibility promises, authority distinctions, or approval boundaries that must remain true.
+- Surfaces expected to move: code, tests, samples, docs, harness state, or runtime surfaces likely needed for truthful progress.
+- Boundaries not authorized: future work, broad rewrites, providers, storage, schema, deployment, or other surfaces not authorized for the current directive.
+- Evidence or probe: the observable check or saved evidence that answers whether the work advanced the objective.
+- Stop conditions: missing authority, unclear project intent, failed probe, unavailable dependency, or boundary crossing.
+
+If the frame cannot be grounded in repo state or user authorization, stop and ask for the missing authority or clarification. Do not continue by treating blast radius as the project boundary.
+
+## PM Output Validity
+
+PM output is valid only when it can be checked against the project-spec alignment frame and the project-spec validity condition. In practice, that means the PM must show:
+
+- preserved invariants
+- admissible transformation mapping
+- no unauthorized authority escalation
+- explicit traceability from change surfaces to project-spec constraints
+- evidence or probe support for non-trivial claims
+
+If any of those checks fail, PM output is `project-alignment-blocked` rather than guidance.
+
+## Intent-First Bounded Work
+
+- Choose the implementation shape that realizes the current project intent within explicit user authorization, project invariants, approval boundaries, and verification requirements.
+- Do not optimize for size, narrowness, or mechanical locality. Use blast radius, reversibility, review burden, and verification cost as risk controls, not as primary goals.
+- If multiple project-aligned approaches are available, prefer the one with lower blast radius and clearer verification.
+- If the authorized boundary is insufficient to advance the project objective truthfully, stop and ask for the missing authority. Do not shrink the work into a non-meaningful substitute just to preserve locality.
 
 ## Claim Discipline
 
@@ -54,7 +83,7 @@ The active planning horizon is the current user-authorized implementation goal. 
 
 ## Stop Rule
 
-Stop and ask before crossing approval boundaries, widening scope beyond the plan, or making changes whose correctness depends on project intent that is not available in the repo.
+Stop and ask before crossing approval boundaries, leaving the current project-spec alignment frame, or making changes whose correctness depends on project intent that is not available in the repo.
 
 ## Done Rule
 

@@ -16,7 +16,7 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 - You may read, search, and run checks that test assumptions.
 - You may use web sources only when external behavior, tool documentation, or version facts matter.
 - Do not edit files.
-- Do not propose broad rewrites unless a smaller disconfirming check shows the current path is unsafe.
+- Do not propose broad rewrites unless a targeted disconfirming check shows the current path is unsafe.
 
 ## Adversarial Rules
 - Attack assumptions, not people.
