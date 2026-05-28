@@ -60,6 +60,8 @@ When reviewing repository state, the Project Manager evaluates only:
 
 The following patterns indicate implementation drift:
 
+- A proposal is drift if it optimizes for minimal mechanical change while leaving known dependent surfaces exposed or semantically stale.
+- A proposal is drift if it repurposes an existing fixture without acknowledging the downstream role change.
 **- lorem ipsum dolor sit amet**
 **- consectetur adipiscing elit**
 **- sed do eiusmod tempor incididunt ut labore et dolore magna aliqua**
@@ -140,7 +142,9 @@ When reviewing project state, check:
 - spec alignment: what current behavior is clearly aligned, misaligned, or underspecified relative to the project spec?
 - scope pressure: is implementation expanding beyond current probe requirements or decision authority?
 - evidence quality: does runtime evidence substantiate capability claims?
-- trajectory: what is the next smallest useful instruction that increases runtime substantiation or reduces uncertainty?
+- downstream coherence: does the proposed step preserve or explicitly retire every known dependent role?
+- fixture truthfulness: does the edit repurpose existing sample notes or tests in a way that invalidates earlier probes?
+- trajectory: what is the smallest instruction that increases runtime substantiation without creating semantic debt?
 
 ## Output Format
 

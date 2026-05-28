@@ -13,6 +13,13 @@ This document defines the standing behavior for the harness orchestrator and age
 - Keep planning bounded to the current user-authorized implementation goal.
 - Update repo-local memory when the project state changes.
 
+## Coherence-First Seams
+
+- Prefer the smallest coherent seam, not the smallest mechanical diff.
+- A seam is coherent only if it keeps known dependent fixtures, sample roles, tests, and acceptance probes truthful.
+- If the narrowest diff would repurpose an existing fixture or leave a known downstream surface semantically stale, widen additively or escalate.
+- Do not call a change "safe" just because it is locally minimal.
+
 ## Claim Discipline
 
 For ordinary coding work, use the compressed form:

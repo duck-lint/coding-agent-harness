@@ -95,7 +95,7 @@ Normal use should look like this:
 1. The user invokes `coding-harnessed.agent.md`.
 2. `coding-harnessed` starts with an ask-first scout pass unless implementation was explicitly authorized.
 3. `coding-harnessed` reads the relevant repo-local harness contracts and state.
-4. `coding-harnessed` identifies blast radius, approval boundaries, and the narrowest safe seam.
+4. `coding-harnessed` identifies blast radius, approval boundaries, and the smallest coherent change, not smallest mechanical change.
 5. `coding-harnessed` delegates bounded work to the relevant role agent when needed.
 6. `coding-harnessed` keeps the user in one conversation instead of making them manually coordinate sub-agents.
 

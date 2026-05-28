@@ -29,6 +29,9 @@ Find orientation and onboarding for this repo in `harness/1.README.md`. Read thi
 - Do not leave follow-on fixes implicit. Fix them, validate them, or escalate them.
 - If the seam completion changes implementation-project state, hand off to the archivist or update the state surfaces in the same turn; do not leave `harness/implementation-projects/active/`, `harness/implementation-projects/archive/`, or `harness/6.open-decisions.md` stale.
 - Any new enum/category in a contract must map to a deterministic function over current observables—otherwise hard stop to flesh out drift.
+- Before editing, restate the downstream surfaces, fixtures, and tests that currently give the artifact its role.
+- Do not consider the seam complete if it leaves a known dependent surface semantically stale or knowingly misaligned.
+- If preserving an existing role matters, that is a constraint, not optional follow-on work.
 
 ## Required Output
 Return:

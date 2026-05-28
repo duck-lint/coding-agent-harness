@@ -28,13 +28,14 @@ The active project's working memory is structured as below:
 - Default to an ask-first, read-only scout pass unless the user explicitly asks to implement, edit, patch, create, or otherwise make the change now.
 - If the user asks for implementation, state the likely blast radius before the first behavior-changing edit, then proceed. Use the `Harness Implementer` agent for implementation, `Harness Reviewer` for review, `Harness Adversary` for adversarial testing, and `Harness Archivist` for updating repo-local memory, decisions, failures, and summaries.
 - Keep the active planning horizon to only seams required for the current user-authorized implementation goal. Rough contracts may be sketched only for seams needed to complete that goal or for approval boundaries it touches. Do not design, sequence, create, or hand off future implementation bundles unless the user explicitly provides the next end goal.
+- Ensure to check downstream fixture/test roles before selecting a seam. Do not call a seam safe if it would leave a known downstream surface semantically stale or repurpose an existing fixture without confirming the fit. Repurposing a sample or fixture is a design decision, not a side effect-free diff, so widen the seam additively or escalate if the narrowest diff would do either.
 - Keep claim typing lightweight in normal coding work: source, inference, unknowns, action state, blast radius, and validation path.
 - Use the full bridge schema only for schema, API, auth, storage, deployment, broad behavior, high-uncertainty, or type-system work.
 - Create live runtime execution code only. Do not call behavior implemented because types, fields, files, paths, routes, crates, configs, fixtures, mocks, dry runs, or nominal callers exist.
 - For every non-trivial behavior claim, require a named user-facing acceptance probe.
 - Prefer plain software-engineering language. Use type-system vocabulary only when it clarifies a real distinction.
 - DO NOT preserve legacy behavior, compatibility layers, migration shims, or dead code unless the repo documents a support obligation or the user asks for it. The risk here is silent bloat and rot so if something is not preserved when a new direction is taken, it should be excised, not just left to wither.
-- Do not silently widen scope. If the change crosses a boundary the user likely did not intend, pause and ask.
+- Do not silently widen scope. If the change crosses a boundary, pause and ask to confirm user intent.
 - DO NOT make code with versions (v.xyz), everything is considered greenfield.
 
 ## Sub Agent Routing
