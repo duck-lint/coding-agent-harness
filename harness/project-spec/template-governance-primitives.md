@@ -1,22 +1,45 @@
 # Governance Primitives
 
-This file defines project-local authority, approval, and admissibility rules for harnessed work.
+This file defines project-local authority semantics, approval boundaries, admissible transformations, and review scaffolding.
 
-## Authority Order
+It is part of the project spec's invariant space. Use it to describe what implementation must preserve or explicitly amend, not to restate harness workflow prompts.
 
-When sources conflict, resolve them in this order unless the user explicitly says otherwise:
+## Governance Posture
 
-1. Current user instruction.
+- Hard constraints the implementation must preserve:
+- Observability scaffolding used to inspect those constraints:
+- Distinctions that must remain explicit rather than hidden in prompts, chat history, or model intuition:
+
+## Invariant Authority
+
+Use this order when deciding what the project is allowed to become:
+
+1. Explicit amendments to the project spec or governance primitives approved by project authority.
+2. This file and the other docs under `harness/project-spec/**`.
+3. Open decisions that interpret the project spec without silently overriding it.
+4. Active plans and trackers implementing an already-authorized objective.
+5. Current user instructions selecting, sequencing, or pausing already-authorized work.
+6. Archived implementation history and prior chat context.
+
+Current instructions may choose work or explicitly amend the spec, but they do not silently override project invariants.
+
+## Task Authority
+
+Use this order when deciding what to do next inside the current invariant space:
+
+1. Current user instruction for the present task.
 2. Open decisions in `harness/6.open-decisions.md`.
 3. Active implementation plan and tracker.
-4. This governance file.
-5. Other markdown files under `harness/project-spec/**`.
-6. Archived implementation history and prior chat context.
+4. Relevant repo-local harness docs under `harness/`.
+5. Archived implementation history and prior chat context.
+
+If task authority conflicts with invariant authority, stop and surface the conflict instead of improvising around it.
 
 ## Approval Boundaries
 
 Require explicit approval before crossing:
 
+- Project spec or governance amendment:
 - Schema:
 - API:
 - Auth:
@@ -25,11 +48,45 @@ Require explicit approval before crossing:
 - Destructive operation:
 - Broad architecture:
 - Compatibility or fallback commitment:
-- Project-intent-dependent behavior not covered by the project spec or current user authorization:
+- Project-intent-dependent behavior not already authorized by the project spec:
 
-## Project-Spec Alignment
+## Invariants and Integrity Constraints
 
-For multi-step, risky, or behavior-facing work, the PM and Planner should ground directives in the project spec by naming:
+- Project truths that must remain stable:
+- Authoritative versus derived, operational, synthesized, or presentation material:
+- Fixture, sample, or test roles that must remain truthful:
+- Compatibility promises, if any:
+- Verification duties that must not be skipped:
+- Unknowns, ambiguity, or uncertainty that must remain visible:
+
+## Admissible Transformations
+
+- Changes allowed without amending the project spec:
+- Changes that require an open decision before proceeding:
+- Changes that require explicit project-spec or governance amendment:
+- Transformations that must preserve provenance, inspectability, or lineage:
+- Transformations that are forbidden shortcuts:
+
+## Review Checkpoints
+
+- What should be visible before trusting source authority:
+- What should be visible before trusting derived or operational evidence:
+- What should be visible before trusting synthesis, automation, or UX claims:
+- What should be visible before closing work as complete:
+
+## Acceptance Probes
+
+Repeat this block as needed for the probes that demonstrate real project progress.
+
+- Probe name:
+- Question it answers:
+- Required real runtime path:
+- Evidence that must be inspectable or saved:
+- What does not count as proof:
+
+## Alignment Inputs For Harness Work
+
+When the harness needs a bounded alignment frame, derive it from this file and the rest of `harness/project-spec/**` by naming:
 
 - Objective:
 - Spec basis:
@@ -38,24 +95,3 @@ For multi-step, risky, or behavior-facing work, the PM and Planner should ground
 - Boundaries not authorized:
 - Evidence or probe:
 - Stop conditions:
-
-If the alignment frame cannot be grounded in this spec, open decisions, active plans, or current user authorization, the work is blocked until the missing authority or clarification is supplied.
-
-## PM Output Validity Condition
-
-A PM recommendation is valid only if all of the following are true:
-
-- Invariants preserved: every invariant named by the project spec, open decisions, or current user instruction remains intact.
-- Admissible transformation: every proposed change maps to a transformation or operation the project spec and governance primitives allow.
-- No authority escalation: the recommendation does not claim authority the current user instruction, active plan, or open decisions do not grant.
-- Traceable surfaces: every surface of change is explicitly traceable to a project-spec constraint, admissible operation, or approved boundary.
-- Evidence-backed: every non-trivial claim is backed by an existing probe, a clearly defined next probe, or explicit scaffold-only labeling.
-
-If any condition fails, the PM output must be marked `project-alignment-blocked` and the missing condition must be named.
-
-## Invariants
-
-- Project truths that must remain stable:
-- Fixture, sample, or test roles that must remain truthful:
-- Compatibility promises, if any:
-- Verification duties that must not be skipped:
