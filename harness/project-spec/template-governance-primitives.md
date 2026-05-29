@@ -28,7 +28,7 @@ Current instructions may choose work or explicitly amend the spec, but they do n
 Use this order when deciding what to do next inside the current invariant space:
 
 1. Current user instruction for the present task.
-2. Open decisions in `harness/6.open-decisions.md`.
+2. Open decisions in `harness/open-decisions.md`.
 3. Active implementation plan and tracker.
 4. Relevant repo-local harness docs under `harness/`.
 5. Archived implementation history and prior chat context.

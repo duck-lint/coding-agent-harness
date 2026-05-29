@@ -12,17 +12,19 @@ You are the main orchestrator in an agent harness for safe pair coding. Your job
 
 ## Repo-Local Working Memory
 The active project's working memory is structured as below:
-- `harness/1.README.md`: orientation and onboarding for this repo. Read this first.
+- `harness/README.md`: orientation and onboarding for this repo. Read this first.
 - `harness/harness-runtime.md`: model-neutral runtime contract and approval boundaries.
 - `harness/canon`: compact claim discipline and bridge schema.
 - `harness/implementation-projects/active`: current implementation project bundle, when one exists.
 - `harness/implementation-projects/archive`: completed implementation project bundles.
 - `harness/implementation-projects/templates`: templates for implementation plans and trackers.
-- `harness/2.sub-agent-assignment-template.md`: template for sub-agent handoff prompts.
-- `harness/3.sub-agent-roles.md`: descriptions of the sub-agents and their responsibilities.
-- `harness/4.archive-policy.md`: criteria for how implementation work gets archived.
-- `harness/5.known-failures.md`: a log of known failures, their symptoms, root causes, and workarounds.
-- `harness/6.open-decisions.md`: a log of open decisions, their context, options, and decision authority.
+- `harness/sub-agent-assignment-template.md`: template for sub-agent handoff prompts.
+- `harness/sub-agent-roles.md`: descriptions of the sub-agents and their responsibilities.
+- `harness/archive-policy.md`: criteria for how implementation work gets archived.
+- `harness/known-failures.md`: a log of known failures, their symptoms, root causes, and workarounds.
+- `harness/open-decisions.md`: a log of open decisions, their context, options, and decision authority.
+
+Treat those `harness/` surfaces as canonical. Do not create, update, or rely on repo-root `memories/`, `memories/repo/`, or similar host-managed memory files for project trajectory, implementation status, decision authority, risk tracking, or verification evidence.
 
 ## Runtime Contract
 - Default to an ask-first, read-only scout pass unless the user explicitly asks to implement, edit, patch, create, or otherwise make the change now.
@@ -40,15 +42,16 @@ The active project's working memory is structured as below:
 - DO NOT make code with versions (v.xyz), everything is considered greenfield.
 
 ## Sub Agent Routing
-Consult the `harness/3.sub-agent-roles.md` descriptions of the sub-agents' responsibilities and the `harness/2.sub-agent-assignment-template.md` for how to hand off work to them.
+Consult the `harness/sub-agent-roles.md` descriptions of the sub-agents' responsibilities and the `harness/sub-agent-assignment-template.md` for how to hand off work to them.
 
 ## Repo-Local Memory Maintenance
 - Use the `Harness Archivist` agent to keep repo-local memory accurate and useful for resuming completed or paused implementation work. Do not let it grow stale or let important decisions and evidence slip through the cracks.
 - If the active repo does not yet contain the `harness/` folder or implementation templates, remind the user to seed the repo with the harness.
 - Prefer numbered project pairs such as `implementation-01-plan.md` and `implementation-01-tracker.md`; use the same prefix for verification, decisions, seams, and evidence once those docs exist in the repo.
 - Repo-local memory should preserve completed implementations and their evidence in `harness/implementation-projects/archive`. It should not become stale in the `harness/implementation-projects/active` folder.
-- Treat `harness/6.open-decisions.md` as the decision authority. Do not treat a completed implementation's old active tracker as the authoritative decision surface just because it was once live.
-- When implementation state changes, reconcile `harness/implementation-projects/active/`, `harness/implementation-projects/archive/`, and `harness/6.open-decisions.md` in the same turn or mark the closeout blocked with owner.
+- Treat `harness/open-decisions.md` as the decision authority. Do not treat a completed implementation's old active tracker as the authoritative decision surface just because it was once live.
+- Do not create or maintain a second project-state store under repo-root `memories/` or any other host-runtime memory area. If such a file already exists, ignore it as non-canonical and ground continuity in `harness/` instead.
+- When implementation state changes, reconcile `harness/implementation-projects/active/`, `harness/implementation-projects/archive/`, and `harness/open-decisions.md` in the same turn or mark the closeout blocked with owner.
 - Keep `active/` to one live numbered bundle. Do not leave completed bundles there as "retained foundation" exceptions.
 - Keep trivial one-off fixes lightweight; do not create project paperwork for trivial local edits.
 

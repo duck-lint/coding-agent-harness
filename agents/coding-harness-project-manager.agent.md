@@ -87,14 +87,14 @@ When reviewing repository state, derive:
 
 If the active repo contains a `harness/` folder, treat it as the authoritative project-local execution state and read the relevant files before making project-state claims:
 
-- `harness/1.README.md`: orientation and onboarding for the repo
+- `harness/README.md`: orientation and onboarding for the repo
 - `harness/harness-runtime.md`: harness runtime contract and execution boundaries
 - `harness/implementation-projects/active/`: current implementation project bundle, when one exists
 - `harness/implementation-projects/archive/`: completed or superseded implementation bundles
 - `harness/project-spec/**/*.md`: authoritative project intent, semantics, architecture, governance primitives, approval boundaries, admissibility rules, and authority distinctions
-- `harness/6.open-decisions.md`: current decision authority and unresolved approvals
-- `harness/5.known-failures.md`: recurring failure patterns and prevention rules
-- `harness/4.archive-policy.md`: closeout and archival discipline
+- `harness/open-decisions.md`: current decision authority and unresolved approvals
+- `harness/known-failures.md`: recurring failure patterns and prevention rules
+- `harness/archive-policy.md`: closeout and archival discipline
 
 If the active repo does not contain `harness/`, state that project-local harness is missing and recommend seeding the repo before treating review output as authoritative.
 
@@ -121,7 +121,7 @@ You may not:
 - `harness/project-spec/**` is the authoritative invariant space for project intent and governance.
 - Treat current user instruction as task authority inside that invariant space unless the user explicitly amends the spec or requests an approval-boundary crossing.
 - If the user appears to be changing invariants, say so explicitly as a spec amendment or decision request.
-- Treat `harness/6.open-decisions.md` as the authority for unresolved decisions.
+- Treat `harness/open-decisions.md` as the authority for unresolved decisions.
 - Treat `harness/implementation-projects/active/` as the current execution state when populated.
 - Do not treat archived implementation bundles as current unless referenced by an active decision.
 - Keep planning horizon constrained to the user's current implementation goal.

@@ -9,7 +9,7 @@ Archive completed implementation work so later sessions can resume from repo-loc
 - decisions are recorded
 - known failures are updated or ruled out
 - remaining risks are explicit
-- the same turn also updates `harness/6.open-decisions.md` and any paused or deferred pointers that still target the completed bundle
+- the same turn also updates `harness/open-decisions.md` and any paused or deferred pointers that still target the completed bundle
 
 ## Archive Summary Must Include
 
@@ -59,7 +59,7 @@ Keep the one live numbered project bundle under `active/` until work is complete
 
 The state folders are the implementation state authority. Do not maintain a separate implementation index or project table.
 
-`harness/6.open-decisions.md` remains the decision authority. Its summary table should link to the decision section itself or another still-authoritative surface, not to a stale active tracker from a completed implementation.
+`harness/open-decisions.md` remains the decision authority. Its summary table should link to the decision section itself or another still-authoritative surface, not to a stale active tracker from a completed implementation.
 
 Do not call an implementation archived if its completed plan, tracker, verification record, and summary are only present outside `harness/implementation-projects/archive/`. A completed implementation is archived only when its completed project bundle lives under `harness/implementation-projects/archive/`.
 
@@ -71,5 +71,5 @@ When work changes an implementation state from active to complete, do the archiv
 
 - move the numbered bundle from `active/` to `archive/`
 - add or update the archive summary
-- repoint `harness/6.open-decisions.md` and any paused or deferred bundles that still target the old active paths
+- repoint `harness/open-decisions.md` and any paused or deferred bundles that still target the old active paths
 - if any of this cannot be completed, mark the closeout blocked with owner instead of leaving the repo in a mixed state

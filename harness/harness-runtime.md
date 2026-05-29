@@ -14,6 +14,13 @@ This document defines the standing behavior for the harness orchestrator and age
 - Keep planning tied to the current task-authorized implementation goal inside the project's invariant space.
 - Update repo-local memory when the project state changes.
 
+## Canonical Memory Rule
+
+- Treat `harness/` as the only canonical repo-local memory for project continuity.
+- Canonical continuity lives in `harness/implementation-projects/archive/`, `harness/open-decisions.md`, and `harness/known-failures.md`.
+- Do not create, update, or rely on repo-root `memories/`, `memories/repo/`, or similar host-runtime memory files for implementation history, decision authority, risk state, or verification evidence.
+- If a host tool provides repo-memory features, ignore them for authoritative project state and inspect the canonical harness surfaces instead.
+
 ## Authority Lens
 
 - Invariant authority lives in `harness/project-spec/**`. It defines what the project is allowed to become.
@@ -105,5 +112,6 @@ Work is done only when:
 - every behavior-facing claim maps to a passing named acceptance probe or an explicit downgrade to `scaffold-only`, blocked, skipped, or deferred with owner
 - remaining risk is explicit
 - project memory is updated when relevant
-- if an implementation changed state, `harness/implementation-projects/active/`, `harness/implementation-projects/archive/`, and `harness/6.open-decisions.md` are reconciled in the same turn or explicitly marked blocked with owner
+- no duplicate project-state store was created outside `harness/`
+- if an implementation changed state, `harness/implementation-projects/active/`, `harness/implementation-projects/archive/`, and `harness/open-decisions.md` are reconciled in the same turn or explicitly marked blocked with owner
 - completed implementation bundles are moved out of `active/`; `active/` keeps one live numbered bundle

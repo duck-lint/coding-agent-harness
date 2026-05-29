@@ -17,6 +17,7 @@ Use it to keep plans, handoffs, role boundaries, decisions, failures, verificati
 - Keep this folder concise. Record the current plan, decisions, evidence, failures, and archive status only when they help the work resume or verify cleanly.
 - Keep project state, evidence, and reusable reference here. Do not use these docs as a chat transcript.
 - Keep repo-local memory as the system of record for completed or paused implementation work.
+- Keep `harness/` as the only canonical continuity store. Do not create or rely on repo-root `memories/`, `memories/repo/`, or similar host-managed memory files for project state.
 - Track only the current task-authorized implementation goal. Do not pre-plan future bundles unless the user supplies the next end goal.
 - Ground multi-step, risky, or behavior-facing work in the repo-local project spec before choosing tasks or files.
 - Define verification before calling work complete.
@@ -28,13 +29,13 @@ Use it to keep plans, handoffs, role boundaries, decisions, failures, verificati
 
 ```text
 harness/
-  1.README.md
+  README.md
   harness-runtime.md
-  2.sub-agent-assignment-template.md
-  3.sub-agent-roles.md
-  4.archive-policy.md
-  5.known-failures.md
-  6.open-decisions.md
+  sub-agent-assignment-template.md
+  sub-agent-roles.md
+  archive-policy.md
+  known-failures.md
+  open-decisions.md
   canon/
     type-system-operational.md
     bridge-schema.md
@@ -50,18 +51,20 @@ harness/
 
 ## File Responsibilities
 
-- `1.README.md`: orientation for harnessed work in this repo.
+- `README.md`: orientation for harnessed work in this repo.
 - `harness-runtime.md`: model-neutral runtime reference that mirrors the orchestrator's standing rules.
-- `2.sub-agent-assignment-template.md`: handoff packet for assigning work to another agent.
-- `3.sub-agent-roles.md`: short role reference for planner, implementer, reviewer, adversary, and archivist.
-- `4.archive-policy.md`: when and how completed implementation work moves to archive.
-- `5.known-failures.md`: recurring harness or repo failure patterns.
-- `6.open-decisions.md`: current decision authority for still-live decisions.
+- `sub-agent-assignment-template.md`: handoff packet for assigning work to another agent.
+- `sub-agent-roles.md`: short role reference for planner, implementer, reviewer, adversary, and archivist.
+- `archive-policy.md`: when and how completed implementation work moves to archive.
+- `known-failures.md`: recurring harness or repo failure patterns.
+- `open-decisions.md`: current decision authority for still-live decisions.
 - `canon/type-system-operational.md`: compact claim discipline for normal coding work.
 - `canon/bridge-schema.md`: full bridge schema for high-risk or conceptually sensitive moves.
 - `implementation-projects/templates/implementation-plan-template.md`: plan skeleton for numbered implementation bundles.
 - `implementation-projects/templates/implementation-tracker-template.md`: tracker skeleton for status, handoffs, blockers, and closeout.
 - `project-spec/**/*.md`: project-local intent, semantics, architecture, governance rules, approval boundaries, and authority distinctions. Project-specific filenames are allowed.
+
+Treat the surfaces above as canonical. If a host runtime offers persistent repo memory, use it at most as a non-authoritative pointer back to these files, never as a duplicate status or decision log.
 
 ## Working Structure
 
@@ -94,6 +97,20 @@ Keep `active/` to one live numbered bundle. Do not leave completed work in `acti
 5. Reviewer checks the diff against the plan, verification status, and behavior acceptance probe.
 6. Adversary stress-tests assumptions when risk, uncertainty, or recurrence justifies it.
 7. Archivist updates decisions, known failures, evidence, and archive placement when project memory changes.
+
+## Memory Boundary
+
+Project trajectory and resumable continuity belong in the harness surfaces already defined here.
+
+Do not create a parallel repo-root memory tree such as `memories/repo/harness.md` for implementation history, completed bundle summaries, live decisions, or verification state. That duplicates authority and invites drift.
+
+When resuming work, inspect current repo state plus:
+
+- `harness/implementation-projects/archive/`
+- `harness/open-decisions.md`
+- `harness/known-failures.md`
+
+Those surfaces replace the need for a separate memory note.
 
 ## Approval Boundaries
 

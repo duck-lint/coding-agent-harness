@@ -33,6 +33,20 @@ The harness exists to prevent common failure modes in iterative AI-assisted codi
 
 The harness adds structure around those failure modes without turning every trivial edit into bureaucracy.
 
+## Canonical Memory Boundary
+
+Canonical project continuity lives in `harness/`, not in tool-managed repo-root memory folders.
+
+Use these harness surfaces as the only authoritative continuity layer:
+
+* `harness/implementation-projects/archive/` for completed implementation summaries and evidence
+* `harness/open-decisions.md` for still-live decision authority
+* `harness/known-failures.md` for recurring failure patterns and detection notes
+
+Do not create, update, or rely on repo-root `memories/`, `memories/repo/`, or similar host-runtime memory files for implementation status, project trajectory, decision authority, risk tracking, or verification evidence.
+
+If a host tool exposes its own repo-memory feature, treat it as non-canonical. The harness should inspect repo state and the authoritative `harness/` surfaces instead of duplicating them into a second store.
+
 ## What gets copied where
 
 There are two install surfaces:
@@ -45,18 +59,20 @@ That split is intentional:
 * `harness/` is the repo-local working memory and process scaffold.
 * the `.agent.md` files are the agent prompts the client loads.
 
+Do not add a parallel repo-root memory tree beside `harness/`; that creates a second continuity surface with no clear authority boundary.
+
 Typical downstream shape:
 
 ```text
 your-repo/
   harness/
-    1.README.md
+    README.md
     harness-runtime.md
-    2.sub-agent-assignment-template.md
-    3.sub-agent-roles.md
-    4.archive-policy.md
-    5.known-failures.md
-    6.open-decisions.md
+    sub-agent-assignment-template.md
+    sub-agent-roles.md
+    archive-policy.md
+    known-failures.md
+    open-decisions.md
     canon/
       type-system-operational.md
       bridge-schema.md
@@ -110,13 +126,13 @@ Optional companion workflow:
 
 This is the portable repo-local working memory that gets copied into a target repo.
 
-* `1.README.md`: orientation for harnessed work in this repo
+* `README.md`: orientation for harnessed work in this repo
 * `harness-runtime.md`: runtime contract and approval boundaries
-* `2.sub-agent-assignment-template.md`: handoff format for assigned sub-agent work
-* `3.sub-agent-roles.md`: role responsibilities and handoff rules
-* `4.archive-policy.md`: when and how completed work moves to archive
-* `5.known-failures.md`: recurring harness or repo failure patterns
-* `6.open-decisions.md`: decision authority for still-live decisions
+* `sub-agent-assignment-template.md`: handoff format for assigned sub-agent work
+* `sub-agent-roles.md`: role responsibilities and handoff rules
+* `archive-policy.md`: when and how completed work moves to archive
+* `known-failures.md`: recurring harness or repo failure patterns
+* `open-decisions.md`: decision authority for still-live decisions
 * `canon/type-system-operational.md`: compact claim discipline for normal coding work
 * `canon/bridge-schema.md`: fuller bridge schema for high-risk or conceptually slippery moves
 * `implementation-projects/active/`: the one live numbered implementation bundle, when needed
@@ -162,6 +178,7 @@ For normal work, the harness should:
 * require explicit verification and named user-facing acceptance probes for non-trivial work
 * keep decisions, failures, handoffs, and implementation state in the repo instead of only in chat history
 * keep planning, implementation, review, adversarial checking, and archival duties separate without making the user manually coordinate them
+* keep project continuity in the canonical `harness/` surfaces instead of duplicating it into repo-root memory folders
 
 ## Implementation bundles
 
@@ -175,7 +192,7 @@ harness/implementation-projects/active/
   implementation-XX-tracker.md
 ```
 
-When the work is complete, the bundle moves to `harness/implementation-projects/archive/`, and any still-live references in `harness/6.open-decisions.md` should be cleaned up in the same closeout.
+When the work is complete, the bundle moves to `harness/implementation-projects/archive/`, and any still-live references in `harness/open-decisions.md` should be cleaned up in the same closeout.
 
 ## Updating downstream repos
 
@@ -193,6 +210,7 @@ The harness docs and the agent definitions can evolve separately, so downstream 
 
 * this is not a package dependency
 * this is not a hidden-memory agent system
+* this is not a workflow where repo-root `memories/` becomes a second project-state store
 * this is not a substitute for project decisions or approval at risky boundaries
 * this is not meant to force heavyweight paperwork onto every trivial edit
 * this is not a workflow where the user manually coordinates the internal role agents as peers
