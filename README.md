@@ -1,190 +1,76 @@
-# Agent Harness
+# External Cognition Harness
 
-Portable repository for a repo-local AI coding harness.
+This folder is the repo-local working memory for harnessed implementation work in this project.
 
-This is a distribution repo, not an app, package, or runtime service. You copy the harness into the repo you are working on, and you copy the `.agent.md` files into whatever client-specific agent folder your tool uses.
+Use it to keep plans, handoffs, role boundaries, decisions, failures, verification evidence, and completed implementation summaries outside chat history.
 
-The point of the harness is not “more agents for their own sake.” The point is to keep AI-assisted coding inside explicit contracts: ownership boundaries, approval boundaries, repo-local memory, verification discipline, and a single user-facing entrypoint.
+## What This Is For
 
-## Core model
+- Keep planning and implementation tied to the user's current goal.
+- Make agent handoffs explicit enough that another role or later session can continue without guessing.
+- Preserve decisions, failures, and verification evidence in the repo instead of in chat history.
+- Separate implementation shape from user-facing behavior.
+- Keep the harness light for trivial local work and structured for multi-step or risky work.
 
-The user should talk to one orchestrator:
+## Core Principles
 
-```text
-user → harnessed.agent.md → harness contracts + repo-local state → specialized role agents when needed
-```
+- Keep this folder concise. Record the current plan, decisions, evidence, failures, and archive status only when they help the work resume or verify cleanly.
+- Keep project state, evidence, and reusable reference here. Do not use these docs as a chat transcript.
+- Keep repo-local memory as the system of record for completed or paused implementation work.
+- Keep `harness/` as the only canonical continuity store. Do not create or rely on repo-root `memories/`, `memories/repo/`, or similar host-managed memory files for project state.
+- Track only the current task-authorized implementation goal. Do not pre-plan future bundles unless the user supplies the next end goal.
+- Ground multi-step, risky, or behavior-facing work in the repo-local project spec before choosing tasks or files.
+- Define verification before calling work complete.
+- Behavior claims need a falsifiable user-facing acceptance probe.
+- Record recurring failures separately from decisions.
+- Prefer plain engineering language. Use the type-system canon only when it clarifies risk.
 
-That is the important shape.
-
-`harnessed.agent.md` is the user-facing orchestrator. The planner, implementer, reviewer, adversary, and archivist are internal roles that `harnessed` may use when the work calls for them. They are not meant to become separate day-to-day entrypoints.
-
-There is also an optional separate project-manager companion agent. That agent is not part of the `harnessed` role chain. The user consults it directly when they want project, intent-boundary, architecture, or harness-discipline continuity pressure-tested, then carries the resulting correction or decision back into `harnessed`.
-
-## What this repository is for
-
-The harness exists to prevent common failure modes in iterative AI-assisted coding:
-
-* agent momentum silently redefining the project
-* local shortcuts becoming permanent architecture
-* planning, implementation, and testing collapsing into one blurry step
-* approval boundaries disappearing when work touches risky surfaces
-* ephemeral chat history being treated as authoritative memory
-* theoretical/structural progress being mistaken for live, user-facing behavior
-
-The harness adds structure around those failure modes without turning every trivial edit into bureaucracy.
-
-## Canonical Memory Boundary
-
-Canonical project continuity lives in `harness/`, not in tool-managed repo-root memory folders.
-
-Use these harness surfaces as the only authoritative continuity layer:
-
-* `harness/implementation-projects/archive/` for completed implementation summaries and evidence
-* `harness/open-decisions.md` for still-live decision authority
-* `harness/known-failures.md` for recurring failure patterns and detection notes
-
-Do not create, update, or rely on repo-root `memories/`, `memories/repo/`, or similar host-runtime memory files for implementation status, project trajectory, decision authority, risk tracking, or verification evidence.
-
-If a host tool exposes its own repo-memory feature, treat it as non-canonical. The harness should inspect repo state and the authoritative `harness/` surfaces instead of duplicating them into a second store.
-
-## What gets copied where
-
-There are two install surfaces:
-
-1. `harness/` is copied into the target repository.
-2. The `.agent.md` files are copied into the client-specific folder where your inference tool loads agent prompts, such as `.copilot/`, `.codex/`, or another tool-specific location.
-
-That split is intentional:
-
-* `harness/` is the repo-local working memory and process scaffold.
-* the `.agent.md` files are the agent prompts the client loads.
-
-Do not add a parallel repo-root memory tree beside `harness/`; that creates a second continuity surface with no clear authority boundary.
-
-Typical downstream shape:
+## Harness Layout
 
 ```text
-your-repo/
-  harness/
-    README.md
-    harness-runtime.md
-    sub-agent-assignment-template.md
-    sub-agent-roles.md
-    archive-policy.md
-    known-failures.md
-    open-decisions.md
-    canon/
-      type-system-operational.md
-      bridge-schema.md
-    implementation-projects/
-      active/
-      archive/
-      templates/
-        implementation-plan-template.md
-        implementation-tracker-template.md
-    project-spec/
-      *.md
-```
-and 
-```text
-C:/
-  Users/
-    user/
-      .copilot/        # or .codex/, or another client-specific folder
-        agents/
-          agent-reference-type-system-canon.md
-          coding-harnessed.agent.md
-          coding-harness-planner.agent.md
-          coding-harness-implementer.agent.md
-          coding-harness-reviewer.agent.md
-          coding-harness-adversary.agent.md
-          coding-harness-archivist.agent.md
+harness/
+  README.md
+  harness-runtime.md
+  sub-agent-assignment-template.md
+  sub-agent-roles.md
+  archive-policy.md
+  known-failures.md
+  open-decisions.md
+  canon/
+    type-system-operational.md
+    bridge-schema.md
+  implementation-projects/
+    active/
+    archive/
+    templates/
+    implementation-plan-template.md
+    implementation-tracker-template.md
+  project-spec/
+    *.md
 ```
 
-Add `coding-harness-project-manager.agent.md` if you want a separate continuity check for project intent, intent-boundary, architecture, and harness usage.
+## File Responsibilities
 
-## Main workflow
+- `README.md`: orientation for harnessed work in this repo.
+- `harness-runtime.md`: model-neutral runtime reference that mirrors the orchestrator's standing rules.
+- `sub-agent-assignment-template.md`: handoff packet for assigning work to another agent.
+- `sub-agent-roles.md`: short role reference for planner, implementer, reviewer, adversary, and archivist.
+- `archive-policy.md`: when and how completed implementation work moves to archive.
+- `known-failures.md`: recurring harness or repo failure patterns.
+- `open-decisions.md`: current decision authority for still-live decisions.
+- `canon/type-system-operational.md`: compact claim discipline for normal coding work.
+- `canon/bridge-schema.md`: full bridge schema for high-risk or conceptually sensitive moves.
+- `implementation-projects/templates/implementation-plan-template.md`: plan skeleton for numbered implementation bundles.
+- `implementation-projects/templates/implementation-tracker-template.md`: tracker skeleton for status, handoffs, blockers, and closeout.
+- `project-spec/**/*.md`: project-local intent, semantics, architecture, governance rules, approval boundaries, and authority distinctions. Project-specific filenames are allowed.
 
-Normal use should look like this:
+Treat the surfaces above as canonical. If a host runtime offers persistent repo memory, use it at most as a non-authoritative pointer back to these files, never as a duplicate status or decision log.
 
-1. The user invokes `coding-harnessed.agent.md`.
-2. `coding-harnessed` starts with an ask-first scout pass unless implementation was explicitly authorized.
-3. `coding-harnessed` reads the relevant repo-local harness contracts and state.
-4. `coding-harnessed` grounds the work in the current admissibility report, then identifies affected and non-affected surfaces, approval boundaries, and the intent-complete change.
-5. `coding-harnessed` delegates assigned work to the relevant role agent when needed.
-6. `coding-harnessed` keeps the user in one conversation instead of making them manually coordinate sub-agents.
+## Working Structure
 
-Optional companion workflow:
+For trivial one-off work, skip project scaffolding and use a lightweight chat plan.
 
-1. The user consults `coding-harness-project-manager.agent.md`.
-2. The Project Manager pressure-tests project goal, intent-boundary, architecture, and drift risk then suggests corrections or next steps.
-3. The user carries the useful correction or decision back into `coding-harnessed`.
-
-## Repo contents
-
-### `harness/`
-
-This is the portable repo-local working memory that gets copied into a target repo.
-
-* `README.md`: orientation for harnessed work in this repo
-* `harness-runtime.md`: runtime contract and approval boundaries
-* `sub-agent-assignment-template.md`: handoff format for assigned sub-agent work
-* `sub-agent-roles.md`: role responsibilities and handoff rules
-* `archive-policy.md`: when and how completed work moves to archive
-* `known-failures.md`: recurring harness or repo failure patterns
-* `open-decisions.md`: decision authority for still-live decisions
-* `canon/type-system-operational.md`: compact claim discipline for normal coding work
-* `canon/bridge-schema.md`: fuller bridge schema for high-risk or conceptually slippery moves
-* `implementation-projects/active/`: the one live numbered implementation bundle, when needed
-* `implementation-projects/archive/`: completed numbered implementation bundles
-* `implementation-projects/templates/`: plan and tracker templates
-* `project-spec/**/*.md`: project-local intent, semantics, architecture, governance rules, approval boundaries, and authority distinctions. Project-specific filenames are allowed.
-
-### `agents/`
-
-These are the agent definitions you install in the client-specific folder.
-
-| File                                   | Role in the workflow                                                                                                                 |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `coding-harnessed.agent.md`                   | User-facing orchestrator. Owns the conversation, affected-surface summary, approval boundaries, delegation, and final integration.       |
-| `coding-harness-planner.agent.md`             | Internal planning role used by `coding-harnessed` to define seams, non-goals, affected surfaces, approval gates, and verification duties.   |
-| `coding-harness-implementer.agent.md`         | Internal implementation role used by `coding-harnessed` to execute one approved seam at a time and validate immediately.                    |
-| `coding-harness-reviewer.agent.md`            | Internal review role used by `coding-harnessed` to judge implementation against the plan and verification contract.                         |
-| `coding-harness-adversary.agent.md`           | Internal adversarial role used by `coding-harnessed` to stress-test assumptions and propose cheap falsifying checks.                        |
-| `coding-harness-archivist.agent.md`           | Internal archival role used by `coding-harnessed` to keep repo-local memory and implementation state coherent.                              |
-| `coding-harness-project-manager.agent.md` | Optional separate user-facing companion agent for project and architecture continuity. The user mediates between it and `coding-harnessed`. |
-| `agent-reference-type-system-canon.md` | Shared reference text for claim discipline and type-system language.                                                                 |
-
-## What the harness is supposed to do
-
-The docs in this repo are designed to keep the following things explicit:
-
-* observed evidence
-* inference
-* unknowns
-* proposed action
-* validated result
-* approval boundaries
-* repo-local memory
-* archive state
-
-For normal work, the harness should:
-
-* default to a read-only scout pass unless the user explicitly asks to implement now
-* make affected and non-affected surfaces explicit before behavior-changing edits
-* ground multi-step, risky, or behavior-facing work in the repo-local project spec
-* keep planning tied to the current task-authorized goal
-* stop for approval before crossing risky boundaries
-* require explicit verification and named user-facing acceptance probes for non-trivial work
-* keep decisions, failures, handoffs, and implementation state in the repo instead of only in chat history
-* keep planning, implementation, review, adversarial checking, and archival duties separate without making the user manually coordinate them
-* keep project continuity in the canonical `harness/` surfaces instead of duplicating it into repo-root memory folders
-
-## Implementation bundles
-
-For trivial local edits, the harness should stay light and avoid unnecessary project paperwork.
-
-For multi-step, repo-scoped, risky, or architecture-shaping work, create a numbered bundle under:
+For multi-step, repo-scoped, risky, or architecture-shaping work, create a numbered implementation bundle under `harness/implementation-projects/active/` using the templates:
 
 ```text
 harness/implementation-projects/active/
@@ -192,39 +78,48 @@ harness/implementation-projects/active/
   implementation-XX-tracker.md
 ```
 
-When the work is complete, the bundle moves to `harness/implementation-projects/archive/`, and any still-live references in `harness/open-decisions.md` should be cleaned up in the same closeout.
+Optional evidence, decision, seam, or verification files can use the same `implementation-XX` prefix when the work needs them. Keep the bundle concise; create extra files only when they reduce real resumption or verification risk.
 
-## Updating downstream repos
+Completed bundles move to:
 
-Because this repo is meant to be copied into other repos, updates are manual:
+```text
+harness/implementation-projects/archive/
+```
 
-1. pull the latest changes from this repo
-2. review what changed in `harness/` and `agents/`
-3. copy the updated harness docs into the target repo
-4. copy the updated agent files into the client folder
-5. avoid blind overwrites if you have customized the harness locally
+Keep `active/` to one live numbered bundle. Do not leave completed work in `active/` as a retained foundation.
 
-The harness docs and the agent definitions can evolve separately, so downstream repos may choose to take one without immediately taking the other.
+## Workflow
 
-## Non-goals
+1. Scout the request and identify the controlling surface.
+2. Planner creates or updates the current plan, seams, approval gates, and acceptance probe when the work needs planning docs.
+3. Human approval is required before crossing approval boundaries.
+4. Implementer executes one approved seam at a time.
+5. Reviewer checks the diff against the plan, verification status, and behavior acceptance probe.
+6. Adversary stress-tests assumptions when risk, uncertainty, or recurrence justifies it.
+7. Archivist updates decisions, known failures, evidence, and archive placement when project memory changes.
 
-* this is not a package dependency
-* this is not a hidden-memory agent system
-* this is not a workflow where repo-root `memories/` becomes a second project-state store
-* this is not a substitute for project decisions or approval at risky boundaries
-* this is not meant to force heavyweight paperwork onto every trivial edit
-* this is not a workflow where the user manually coordinates the internal role agents as peers
-* this is not a signal that sub-agents are the point; the point is the contract and the continuity layer
+## Memory Boundary
 
-## Summary
+Project trajectory and resumable continuity belong in the harness surfaces already defined here.
 
-This repo packages a portable harness where:
+Do not create a parallel repo-root memory tree such as `memories/repo/harness.md` for implementation history, completed bundle summaries, live decisions, or verification state. That duplicates authority and invites drift.
 
-* `harness/` lives in the target repo
-* `harness/project-spec/` = authoritative semantic substrate, with project-specific filenames allowed
-* the `.agent.md` files live in the client folder
-* the user talks to `coding-harnessed`
-* `coding-harnessed` operates through harness contracts and repo-local state
-* internal role agents are used when needed, but they are not the primary interface
-* the optional Project Manager is a separate companion for continuity and drift checking
-* verification, approval boundaries, and repo-local memory are part of the workflow rather than afterthoughts
+When resuming work, inspect current repo state plus:
+
+- `harness/implementation-projects/archive/`
+- `harness/open-decisions.md`
+- `harness/known-failures.md`
+
+Those surfaces replace the need for a separate memory note.
+
+## Approval Boundaries
+
+Escalate before changing schema, API, auth, storage, deployment, billing, destructive operations, broad architecture, compatibility promises, or project-intent-dependent behavior not covered by the repo spec or current task authority.
+
+Approval must name the boundary and current admissibility report. Approval for one schema change is not approval for deployment. Approval for a local refactor is not approval for a compatibility layer.
+
+## About `harness-runtime.md`
+
+Keep `harness-runtime.md` as a separate unnumbered reference. It mirrors the runtime rules in a model-neutral form so every role has the same repo-local contract to check against.
+
+It is unnumbered because it is a standing reference, not a procedural step.
