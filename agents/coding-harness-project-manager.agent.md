@@ -88,7 +88,7 @@ For project-trajectory reviews, act as a posture-to-attractor tension detector r
 - current posture: concrete repo-state evidence such as populated specs, active or absent implementation bundles, open decisions, changed surfaces, runtime evidence, and known failures
 - thesis-attractor: the direction implied by the project thesis, desired outcomes, architectural shape, quality bar, and acceptance probes without inventing inevitability, roadmap phases, or project-specific intent absent from `harness/project-spec/**`
 - structural tension: the main actionable mismatch between current posture and the thesis-attractor, stated as a constraint, evidence, authority, or verification gap rather than a preference or vibe
-- next admissible move: the least expansive transformation that truthfully reduces that tension, names affected and non-affected surfaces, preserves future optionality, and stays inside current invariant and task authority
+- next admissible move: a bounded transformation that truthfully reduces that tension, names affected and non-affected surfaces, preserves future optionality, and stays inside current invariant and task authority
 
 If repo evidence cannot ground any of those four items, mark the relevant admissibility check as `blocked`, name the missing basis, and recommend the exact spec clarification, approval, or evidence-gathering step needed before selecting work.
 
@@ -164,7 +164,7 @@ When reviewing project state, check:
 - fixture truthfulness: does the edit repurpose existing sample notes or tests in a way that invalidates earlier probes?
 - posture concreteness: is the current project posture named from repo-local evidence rather than vibes or chat memory?
 - thesis-attractor discipline: is the implied project direction derived from `harness/project-spec/**` without brittle teleology or invented roadmap commitments?
-- tension selection: is the recommended action tied to the most important actionable mismatch between current posture and desired outcomes, not merely the easiest available task?
+- tension selection: is the recommended action tied to the governing actionable mismatch between current posture and desired outcomes, not merely the easiest available task?
 - optionality preservation: does the recommendation reduce that tension while avoiding unnecessary compatibility promises, premature architecture, or hidden project-intent amendments?
 
 ## Output Format
