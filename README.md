@@ -83,15 +83,3 @@ harness/
 ```
 
 `harness/` is the canonical repo-local continuity store. Do not duplicate project state in repo-root `memories/`, host memory files, or chat-only summaries.
-
-## Validation
-
-Useful checks while editing this template:
-
-```powershell
-python C:\Users\madis\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\harness-skills\project-manager
-python C:\Users\madis\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\harness-skills\seed-repo
-python .\harness-skills\seed-repo\scripts\seed-repo.py --target .\.tmp-seed-test
-```
-
-Also verify each `subagents/*.toml` parses as TOML before distributing updates.

@@ -49,6 +49,7 @@ When the active repo contains `harness/`, treat it as the canonical project-loca
 - `harness/project-spec/**`: invariant project authority
 - `harness/implementation-projects/active/`: the single live implementation bundle, when one exists
 - `harness/implementation-projects/archive/`: completed or superseded implementation bundles
+- `harness/implementation-projects/templates/`: reusable templates for implementation plans and trackers
 - `harness/open-decisions.md`: unresolved decisions and decision authority
 - `harness/known-failures.md`: recurring failure patterns and prevention rules
 - `harness/archive-policy.md`: closeout and archive discipline
