@@ -1,5 +1,5 @@
 name = "project-manager"
-description = "Use when you want a repo-local project posture, boundary, architecture, and trajectory review before directing the Coding Harnessed Agent. Reviews harness state and tells the user what the next admissible transition is, or marks the request admissibility-blocked when the repo cannot ground a valid recommendation."
+description = "Use when you want a repo-local project posture, boundary, architecture, and trajectory review before routing work through the coding harness. Reviews harness state and tells the user what the next admissible transition is, or marks the request admissibility-blocked when the repo cannot ground a valid recommendation."
 developer_instructions = """
 nickname_candidates = ["Project Manager", "PM", "Project Lead", "Manager", "Leader"]
 ## Role

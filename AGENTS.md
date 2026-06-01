@@ -37,6 +37,8 @@ Use `$project-manager` when the task needs strict project-direction review:
 - approval-boundary detection
 - proof-frontier or next admissible transition selection
 
+Use the `decision-matrix` skill when the user is choosing between multiple options and the tradeoffs are complex enough that a simple pros-and-cons list would hide the real decision structure.
+
 The project-manager skill does not own the user conversation and does not execute routing. It returns a report for this orchestrator to apply.
 
 Use `$seed-repo` when a target repo should receive the external cognition harness. Seeding creates repo-local `harness/` files only. Installing subagent TOMLs into `~/.codex/agents` changes user-global Codex config and must be explicitly approved first.

@@ -5,6 +5,7 @@ This repo packages a lightweight external cognition harness for Codex-driven cod
 It contains:
 - `AGENTS.md`: always-on orchestrator guidance for the user-facing chat
 - `harness-skills/project-manager/`: advisory skill for strict admissibility and project trajectory reports
+- `harness-skills/decision-matrix/`: first-class decision aid for structured option comparison
 - `harness-skills/seed-repo/`: skill and script for seeding a target repo with `harness/`
 - `subagents/`: distributable TOML templates for the project-manager advisory role plus planner, implementer, reviewer, adversary, and archivist roles
 
@@ -15,6 +16,7 @@ The root orchestrator owns the user conversation and role routing. The project-m
 This keeps the UX in one chat while preserving separate context and purpose:
 - root `AGENTS.md` handles conversation and orchestration
 - `$project-manager` handles project direction and admissibility review
+- `decision-matrix` handles structured comparison when the user needs to choose among several options
 - installed subagents handle project-direction review, planning, implementation, review, adversarial checks, and archival memory
 - `$seed-repo` installs repo-local harness memory into target projects
 
