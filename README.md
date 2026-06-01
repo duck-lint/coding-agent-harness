@@ -64,8 +64,7 @@ Installing subagents changes user-global Codex config. The orchestrator or seed 
 harness/
   README.md
   harness-runtime.md
-  sub-agent-assignment-template.md
-  sub-agent-roles.md
+  sub-agents.md
   archive-policy.md
   known-failures.md
   open-decisions.md

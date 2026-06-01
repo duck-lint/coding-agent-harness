@@ -31,8 +31,7 @@ Use it to keep plans, handoffs, role boundaries, decisions, failures, verificati
 harness/
   README.md
   harness-runtime.md
-  sub-agent-assignment-template.md
-  sub-agent-roles.md
+  sub-agents.md
   archive-policy.md
   known-failures.md
   open-decisions.md
@@ -53,8 +52,7 @@ harness/
 
 - `README.md`: orientation for harnessed work in this repo.
 - `harness-runtime.md`: model-neutral runtime reference that mirrors the orchestrator's standing rules.
-- `sub-agent-assignment-template.md`: handoff packet for assigning work to another agent.
-- `sub-agent-roles.md`: short role reference for planner, implementer, reviewer, adversary, and archivist.
+- `sub-agents.md`: role boundaries and handoff structure for subagent work.
 - `archive-policy.md`: when and how completed implementation work moves to archive.
 - `known-failures.md`: recurring harness or repo failure patterns.
 - `open-decisions.md`: current decision authority for still-live decisions.

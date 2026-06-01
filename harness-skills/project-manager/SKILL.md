@@ -12,7 +12,7 @@ Always read the core references first:
 Read the conditional references when their topic is relevant to the current request:
 - `references/harness-runtime.md`
 - `references/archive-policy.md`
-- `references/sub-agent-roles.md`
+- `references/sub-agents.md`
 
 Pass only:
 - the user’s current request
