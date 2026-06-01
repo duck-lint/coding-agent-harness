@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 ROLE_FILES = (
+    "project-manager.toml",
     "planner.toml",
     "implementer.toml",
     "reviewer.toml",

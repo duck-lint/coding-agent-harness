@@ -2,7 +2,7 @@
 name: "project-manager"
 description: "Produce advisory project-management reports for the coding harness. Use when Codex needs strict admissibility review, thesis/tension analysis, invariant-boundary checks, proof-frontier selection, affected/non-affected surface framing, or next-admissible-transition guidance under repo-local harness governance."
 ---
-When invoked, spawn the `project-manager` custom agent using `pm.toml`.
+When invoked, spawn the `project-manager` custom agent using `project-manager.toml`.
 
 Pass only:
 - the user’s current request
