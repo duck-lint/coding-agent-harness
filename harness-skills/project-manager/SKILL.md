@@ -4,6 +4,15 @@ description: "Produce advisory project-management reports for the coding harness
 ---
 When invoked, spawn the `project-manager` custom agent using `project-manager.toml`.
 
+Always read the core references first:
+- `references/bridge-schema.md`
+- `references/type-system-operational.md`
+
+Read the conditional references when their topic is relevant to the current request:
+- `references/harness-runtime.md`
+- `references/archive-policy.md`
+- `references/sub-agent-roles.md`
+
 Pass only:
 - the user’s current request
 - relevant repo paths

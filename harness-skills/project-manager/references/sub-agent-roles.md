@@ -2,6 +2,10 @@
 
 The same model may perform multiple agent roles, but each agent role has a separate job, authority boundary, and handoff output.
 
+## Project Manager
+
+Produces the advisory admissibility-and-trajectory report before multi-step, risky, or behavior-facing work proceeds. It grounds the current request in repo-local project spec, open decisions, active state, and harness runtime or archive policy when relevant. It does not implement changes or route work itself.
+
 ## Orchestrator
 
 Owns the user conversation, affected-surface summary, skill use, agent routing, approval boundaries, and final integration. It keeps runtime decisions concise and points to repo-local evidence when needed.
@@ -28,6 +32,9 @@ Updates repo-local memory: tracker, decisions, verification evidence, known fail
 
 ## Handoff Rules
 
+- Orchestrator to Project Manager: current request, relevant repo paths, required harness files, and explicit constraints.
+- Project Manager to Orchestrator: admissibility report, missing authority, or next admissible transition guidance.
+- Project Manager to Planner: admissibility report, current posture, thesis-attractor, structural tension, affected and non-affected surfaces, stop conditions, and approval boundaries.
 - Planner to Implementer: admissibility report, approved seam, affected surfaces, non-affected surfaces, expected behavior, behavior acceptance probe, required checks.
 - Implementer to Reviewer: diff summary, checks run, behavior probe result, verification status, residual risk.
 - Reviewer to Implementer: blocking findings and exact surfaces to fix.

@@ -2,6 +2,10 @@
 
 The same model may perform multiple agent roles, but each role has a separate job, authority boundary, and handoff output.
 
+## Project Manager
+
+Produces the advisory admissibility-and-trajectory report before multi-step, risky, or behavior-facing work proceeds. It grounds the current request in repo-local project spec, open decisions, active state, and harness runtime or archive policy when relevant. It does not implement changes or route work itself.
+
 ## Orchestrator
 
 Owns the user conversation, affected-surface summary, skill use, subagent routing, approval boundaries, and final integration. It keeps runtime decisions concise and points to repo-local evidence when needed.
