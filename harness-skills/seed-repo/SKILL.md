@@ -48,7 +48,7 @@ Error handling notes:
 
 Optional flags:
 - `--force`: replace an existing target `harness/` folder.
-- `--subagents-source /path/to/subagents`: source directory containing `planner.toml`, `implementer.toml`, `reviewer.toml`, `adversary.toml`, and `archivist.toml`.
+- `--subagents-source /path/to/subagents`: source directory containing `planner.toml`, `implementer.toml`, `reviewer.toml`, `adversary.toml`, `archivist.toml`, and `project-manager.toml`.
 - `--install-subagents`: copy subagent TOMLs into `~/.codex/agents`. Use only after explicit user approval.
 
 ## Guarantees

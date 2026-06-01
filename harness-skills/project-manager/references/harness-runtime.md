@@ -77,7 +77,7 @@ For ordinary coding work, use the compressed form:
 - Action state: proposed, implemented, validated, blocked, deferred, or quarantined.
 - Cash-out: what observable check should change.
 
-Use the full bridge schema in [canon/bridge-schema.md](canon/bridge-schema.md) only when the move crosses schema, API, auth, storage, deployment, broad behavior, high uncertainty, or the type-system canon itself.
+Use the full bridge schema in [bridge-schema.md](bridge-schema.md) only when the move crosses schema, API, auth, storage, deployment, broad behavior, high uncertainty, or the type-system canon itself.
 
 ## Anti-Drift Contract Discipline
 - Any new enum/category in a contract must map to a deterministic function over current observables. If it does not, stop and define it before continuing.
