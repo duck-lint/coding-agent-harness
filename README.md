@@ -1,31 +1,62 @@
-# External Cognition Harness
+# Coding Agent Harness Template
 
-This folder is the repo-local working memory for harnessed implementation work in this project.
+This repo packages a lightweight external cognition harness for Codex-driven coding work.
 
-Use it to keep plans, handoffs, role boundaries, decisions, failures, verification evidence, and completed implementation summaries outside chat history.
+It contains:
+- `AGENTS.md`: always-on orchestrator guidance for the user-facing chat
+- `harness-skills/project-manager/`: advisory skill for strict admissibility and project trajectory reports
+- `harness-skills/seed-repo/`: skill and script for seeding a target repo with `harness/`
+- `subagents/`: distributable TOML templates for planner, implementer, reviewer, adversary, and archivist roles
 
-## What This Is For
+## Architecture
 
-- Keep planning and implementation tied to the user's current goal.
-- Make agent handoffs explicit enough that another role or later session can continue without guessing.
-- Preserve decisions, failures, and verification evidence in the repo instead of in chat history.
-- Separate implementation shape from user-facing behavior.
-- Keep the harness light for trivial local work and structured for multi-step or risky work.
+The root orchestrator owns the user conversation and role routing. The project-manager skill is advisory: it produces strict reports about admissibility, thesis/tension, approval boundaries, affected surfaces, and next admissible transitions. The subagents execute bounded jobs inside their own authority.
 
-## Core Principles
+This keeps the UX in one chat while preserving separate context and purpose:
+- root `AGENTS.md` handles conversation and orchestration
+- `$project-manager` handles project direction and admissibility review
+- installed subagents handle planning, implementation, review, adversarial checks, and archival memory
+- `$seed-repo` installs repo-local harness memory into target projects
 
-- Keep this folder concise. Record the current plan, decisions, evidence, failures, and archive status only when they help the work resume or verify cleanly.
-- Keep project state, evidence, and reusable reference here. Do not use these docs as a chat transcript.
-- Keep repo-local memory as the system of record for completed or paused implementation work.
-- Keep `harness/` as the only canonical continuity store. Do not create or rely on repo-root `memories/`, `memories/repo/`, or similar host-managed memory files for project state.
-- Track only the current task-authorized implementation goal. Do not pre-plan future bundles unless the user supplies the next end goal.
-- Ground multi-step, risky, or behavior-facing work in the repo-local project spec before choosing tasks or files.
-- Define verification before calling work complete.
-- Behavior claims need a falsifiable user-facing acceptance probe.
-- Record recurring failures separately from decisions.
-- Prefer plain engineering language. Use the type-system canon only when it clarifies risk.
+## Seeding A Repo
 
-## Harness Layout
+Use the seed skill script from this repo:
+
+```powershell
+python .\harness-skills\seed-repo\scripts\seed-repo.py --target C:\path\to\target-repo
+```
+
+The script copies:
+
+```text
+harness-skills/seed-repo/assets/repo-harness-template/repo-harness/
+```
+
+into:
+
+```text
+<target-repo>/harness/
+```
+
+It aborts if `<target-repo>/harness/` already exists unless `--force` is explicitly supplied.
+
+## Subagent Installation
+
+The TOML files under `subagents/` are install templates. To let the root orchestrator spawn these roles, install them into:
+
+```text
+~/.codex/agents/
+```
+
+The seed script can do this with:
+
+```powershell
+python .\harness-skills\seed-repo\scripts\seed-repo.py --target C:\path\to\target-repo --install-subagents
+```
+
+Installing subagents changes user-global Codex config. The orchestrator or seed skill must ask for explicit approval before running that option.
+
+## Seeded Harness Layout
 
 ```text
 harness/
@@ -43,83 +74,23 @@ harness/
     active/
     archive/
     templates/
-    implementation-plan-template.md
-    implementation-tracker-template.md
+      implementation-plan-template.md
+      implementation-tracker-template.md
   project-spec/
-    *.md
+    template-governance-primitives.md
+    template-project-spec.md
 ```
 
-## File Responsibilities
+`harness/` is the canonical repo-local continuity store. Do not duplicate project state in repo-root `memories/`, host memory files, or chat-only summaries.
 
-- `README.md`: orientation for harnessed work in this repo.
-- `harness-runtime.md`: model-neutral runtime reference that mirrors the orchestrator's standing rules.
-- `sub-agent-assignment-template.md`: handoff packet for assigning work to another agent.
-- `sub-agent-roles.md`: short role reference for planner, implementer, reviewer, adversary, and archivist.
-- `archive-policy.md`: when and how completed implementation work moves to archive.
-- `known-failures.md`: recurring harness or repo failure patterns.
-- `open-decisions.md`: current decision authority for still-live decisions.
-- `canon/type-system-operational.md`: compact claim discipline for normal coding work.
-- `canon/bridge-schema.md`: full bridge schema for high-risk or conceptually sensitive moves.
-- `implementation-projects/templates/implementation-plan-template.md`: plan skeleton for numbered implementation bundles.
-- `implementation-projects/templates/implementation-tracker-template.md`: tracker skeleton for status, handoffs, blockers, and closeout.
-- `project-spec/**/*.md`: project-local intent, semantics, architecture, governance rules, approval boundaries, and authority distinctions. Project-specific filenames are allowed.
+## Validation
 
-Treat the surfaces above as canonical. If a host runtime offers persistent repo memory, use it at most as a non-authoritative pointer back to these files, never as a duplicate status or decision log.
+Useful checks while editing this template:
 
-## Working Structure
-
-For trivial one-off work, skip project scaffolding and use a lightweight chat plan.
-
-For multi-step, repo-scoped, risky, or architecture-shaping work, create a numbered implementation bundle under `harness/implementation-projects/active/` using the templates:
-
-```text
-harness/implementation-projects/active/
-  implementation-XX-plan.md
-  implementation-XX-tracker.md
+```powershell
+python C:\Users\madis\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\harness-skills\project-manager
+python C:\Users\madis\.codex\skills\.system\skill-creator\scripts\quick_validate.py .\harness-skills\seed-repo
+python .\harness-skills\seed-repo\scripts\seed-repo.py --target .\.tmp-seed-test
 ```
 
-Optional evidence, decision, seam, or verification files can use the same `implementation-XX` prefix when the work needs them. Keep the bundle concise; create extra files only when they reduce real resumption or verification risk.
-
-Completed bundles move to:
-
-```text
-harness/implementation-projects/archive/
-```
-
-Keep `active/` to one live numbered bundle. Do not leave completed work in `active/` as a retained foundation.
-
-## Workflow
-
-1. Scout the request and identify the controlling surface.
-2. Planner creates or updates the current plan, seams, approval gates, and acceptance probe when the work needs planning docs.
-3. Human approval is required before crossing approval boundaries.
-4. Implementer executes one approved seam at a time.
-5. Reviewer checks the diff against the plan, verification status, and behavior acceptance probe.
-6. Adversary stress-tests assumptions when risk, uncertainty, or recurrence justifies it.
-7. Archivist updates decisions, known failures, evidence, and archive placement when project memory changes.
-
-## Memory Boundary
-
-Project trajectory and resumable continuity belong in the harness surfaces already defined here.
-
-Do not create a parallel repo-root memory tree such as `memories/repo/harness.md` for implementation history, completed bundle summaries, live decisions, or verification state. That duplicates authority and invites drift.
-
-When resuming work, inspect current repo state plus:
-
-- `harness/implementation-projects/archive/`
-- `harness/open-decisions.md`
-- `harness/known-failures.md`
-
-Those surfaces replace the need for a separate memory note.
-
-## Approval Boundaries
-
-Escalate before changing schema, API, auth, storage, deployment, billing, destructive operations, broad architecture, compatibility promises, or project-intent-dependent behavior not covered by the repo spec or current task authority.
-
-Approval must name the boundary and current admissibility report. Approval for one schema change is not approval for deployment. Approval for a local refactor is not approval for a compatibility layer.
-
-## About `harness-runtime.md`
-
-Keep `harness-runtime.md` as a separate unnumbered reference. It mirrors the runtime rules in a model-neutral form so every role has the same repo-local contract to check against.
-
-It is unnumbered because it is a standing reference, not a procedural step.
+Also verify each `subagents/*.toml` parses as TOML before distributing updates.

@@ -1,18 +1,18 @@
 # Agent Role Contracts
 
-The same model may perform multiple agent roles, but each agent role has a separate job, authority boundary, and handoff output.
+The same model may perform multiple agent roles, but each role has a separate job, authority boundary, and handoff output.
 
-## Harnessed Agent
+## Orchestrator
 
-Owns the user conversation, affected-surface summary, agent routing, approval boundaries, and final integration. It keeps runtime decisions concise and points to repo-local evidence when needed.
+Owns the user conversation, affected-surface summary, skill use, subagent routing, approval boundaries, and final integration. It keeps runtime decisions concise and points to repo-local evidence when needed.
 
 ## Planner
 
-Turns intent into an executable plan. It defines the admissibility report, seams, non-goals, affected and non-affected surfaces, approval gates, the user-facing acceptance probe, and the verification contract. It may edit planning docs but does not implement project changes.
+Turns intent into an executable plan. It defines the admissibility report, non-goals, affected and non-affected surfaces, approval gates, the user-facing acceptance probe, and the verification contract. It may edit planning docs but does not implement project changes.
 
 ## Implementer
 
-Executes one approved seam at a time. It edits only surfaces authorized by the admissibility report, validates immediately, updates tracker status, and escalates when the seam is wrong, no longer admissible, or cannot satisfy the named behavior probe.
+Executes one approved bounded job at a time. It edits only surfaces authorized by the admissibility report, validates immediately, updates tracker status, and escalates when the work is wrong, no longer admissible, or cannot satisfy the named behavior probe.
 
 ## Reviewer
 
@@ -28,7 +28,7 @@ Updates repo-local memory: tracker, decisions, verification evidence, known fail
 
 ## Handoff Rules
 
-- Planner to Implementer: admissibility report, approved seam, affected surfaces, non-affected surfaces, expected behavior, behavior acceptance probe, required checks.
+- Planner to Implementer: admissibility report, approved work, affected surfaces, non-affected surfaces, expected behavior, behavior acceptance probe, required checks.
 - Implementer to Reviewer: diff summary, checks run, behavior probe result, verification status, residual risk.
 - Reviewer to Implementer: blocking findings and exact surfaces to fix.
 - Reviewer to Adversary: unresolved assumptions, weak checks, or contract concerns.

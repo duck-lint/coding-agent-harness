@@ -13,7 +13,7 @@
 - Admissibility checks:
 - Stop conditions:
 
-## Planned Seams
+## Planned Work
 
 ## Non-Goals
 

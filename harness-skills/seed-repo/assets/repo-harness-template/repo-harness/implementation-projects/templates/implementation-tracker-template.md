@@ -3,7 +3,7 @@
 ## Status
 
 - State: proposed | active | blocked | reviewing | archived
-- Current seam:
+- Current work:
 - Next action:
 
 ## Work Log
@@ -12,9 +12,9 @@
 | --- | --- | --- | --- | --- |
 |  |  |  |  |  |
 
-## Seam Status
+## Work Status
 
-| Seam | Owner Agent | Status | Verification | Notes |
+| Work | Owner Agent | Status | Verification | Notes |
 | --- | --- | --- | --- | --- |
 |  |  | proposed |  |  |
 
