@@ -9,14 +9,9 @@ Describe the project here, not the harness. Let the harness derive planning and 
 - What the system is:
 - What the system is not:
 - Why this project should exist:
-
-## Desired User Outcomes
-
 - Primary users or operators:
 - Highest-value workflow:
-- What the user should be able to do:
-- What the user should be able to inspect, verify, or understand:
-- What would make the result feel genuinely useful rather than merely plausible:
+- Expectations:
 
 ## Non-Goals
 
