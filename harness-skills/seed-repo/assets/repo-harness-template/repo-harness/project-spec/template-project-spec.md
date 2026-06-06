@@ -9,7 +9,6 @@ Describe the project here, not the harness. Let the harness derive planning and 
 - What the system is:
 - What the system is not:
 - Why this project should exist:
-- Authoritative source, substrate, or real-world boundary the system must respect:
 
 ## Desired User Outcomes
 
@@ -42,6 +41,7 @@ Describe the project here, not the harness. Let the harness derive planning and 
 - What must be visible before synthesis, automation, or UX claims are trusted:
 - Approval-sensitive surfaces:
 - Downstream fixtures, samples, or dependent roles that must remain truthful:
+- Authoritative source, substrate, or real-world boundary the system must respect:
 
 ## Project Quality Bar
 
