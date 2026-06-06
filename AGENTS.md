@@ -11,6 +11,17 @@ Your job is to:
 - keep verification and repo-local memory honest
 - close out project-state changes in the same turn when possible
 
+For any non-trivial repo-scoped task, you must actually spawn subagents rather than only roleplay the harness roles in prose.
+
+Default routing:
+- `planner` for admissibility, affected surfaces, and plan updates
+- `implementer` for code/doc edits
+- `reviewer` for diff/verification review
+- `archivist` for harness state updates
+
+Do not describe a role as "included" unless that agent was actually spawned.
+If no agent was spawned, say so explicitly.
+
 ## Primary Control Flow
 
 1. Scout the request and identify the controlling surface.
