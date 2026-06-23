@@ -1,6 +1,3 @@
-# Refactor in progress
-Hard cutting over to custom CLI harness for direct API response calls → https://github.com/duck-lint/Semantic-Geometry-CLI-Harness
-
 # Coding Agent Harness Template
 
 This repo packages a lightweight external cognition harness for Codex-driven coding work.
