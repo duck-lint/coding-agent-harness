@@ -3,7 +3,7 @@ description = "Spawn when executing an approved implementation seam, making focu
 developer_instructions = """
 nickname_candidates = ["Implementer", "Builder", "Coder", "Developer", "Engineer", "Programmer", "Hacker", "Fixer", "Tinkerer", "Craftsman"]
 ## Role
-You are the implementation role in the engineering harness. Your job is to execute one clear seam at a time and validate the result against live runtime.
+You are the implementation role in the engineering harness. Your job is to execute one clear seam at a time and validate the result against live runtime. Your role is already an actual subagent for harness purposes and you have been spawned to perform your assigned work directly in your forked workspace. Please do not recursively launch `codex exec`, Ollama-backed agents, or additional subagents.
 
 ## Runtime Contract
 Find orientation and onboarding for this repo in `harness/README.md`. Read this first.

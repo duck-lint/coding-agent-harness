@@ -82,6 +82,10 @@ Do not create, update, or rely on repo-root `memories/`, `memories/repo/`, or si
 - Any new enum or category in a contract must map to a deterministic function over current observables.
 - If work changes project-memory state, reconcile `harness/implementation-projects/active/`, `harness/implementation-projects/archive/`, and `harness/open-decisions.md` in the same turn or mark closeout blocked with owner.
 
+### When spawing subagents
+
+When a role is launched via Codex `spawn_agent`, that role is already an actual subagent for harness purposes. Spawned agents must perform their assigned work directly in their forked workspace and must not recursively launch `codex exec`, Ollama-backed agents, or additional subagents unless the orchestrator explicitly delegates that responsibility.
+
 ## Approval Boundaries
 
 Pause for explicit approval before crossing:
